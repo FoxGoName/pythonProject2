@@ -126,9 +126,10 @@ class deleteProductView(DeleteView):
     
 def search_Manage(request):
     query = request.GET.get('query')  # 获取搜索关键词
-
+     
     if query:
-        results = Product.objects.filter(title__icontains=query)  # 使用icontains过滤器进行模糊匹配
+     # results = Product.objects.filter(title__icontains=query)  # 使用icontains过滤器进行模糊匹配
+     results = Product.objects.filter(Q(title__icontains=query) | Q(id__icontains=query)) 
     else:
         results = Product.objects.all()  # 如果没有搜索关键词，返回所有对象
 

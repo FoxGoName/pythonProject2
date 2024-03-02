@@ -5,15 +5,26 @@
 {% block content %}
 <h1>Search Results</h1>
 
-<form action="{% url 'searchManage' %}" method="GET">
-    <input type="text" name="q" placeholder="Search...">
-    <button type="submit">Search</button>
+<!-- <form action="{% url 'searchManage' %}" method="GET">
+    <input type="text" name="quey" placeholder="Search...">
+    <button type="submit">Search</button>
 </form>
 {% if query %}
-    <p>Showing results for "{{ query }}":</p>
+    <p>Showing results for "{{ query }}":</p>
 {% else %}
-    <p>Showing all results:</p>
-{% endif %}
+    <p>Showing all results:</p>
+{% endif %} -->
+
+<form method="get" action="{% url 'searchManage' %}">
+    <div class="field has-addons">
+         <div class="control">
+            <input type="text" class="input" placeholder="Search..." name="query">
+        </div>
+        <div class="control">
+            <button class="button is-success">Search</button>
+        </div>
+    </div>
+</form>
 
 {% if results %}
     <ul>
