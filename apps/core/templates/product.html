@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+             <!-- <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
+             <div class="product-list">
+                 {% for product in products %}
+                 <div class="product">
+                     <span>{{ product.id }}</span>
+                     <span>{{ product.title }}</span>
+                     <a href="{% url 'editProduct' product.pk %}" class="edit-button">Edit</a>
+                     <a href="{% url 'deleteProduct' product.pk %}" class="edit-button">Delete</a>
+                 </div>
+                 {% endfor %}
+             </div>
+         </div> -->
+
+         <form method="get" action="{% url 'searchManage' %}">
+            <div class="field has-addons">
+                <div class="control">
+                    <input type="text" class="input" placeholder="Search..." name="query">
+                </div>
+                <div class="control">
+                    <button class="button is-success">Search</button>
+                </div>
+            </div>
+        </form>
+    <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
+
+   <!-- <div class = "columns is-multiline" >
+            {% for product in products %}
+                <div class="column is-3">
+                   <div class="card">
+                     <div class="card-image">
+                        <figure class="image">
+                                   <img src="{{ product.thumbnail }}">
+                        </figure>
+                     </div>
+                      <div class="card-content">
+                           <div class="media">
+                              <div class="media-content">
+                                 <p class="title is-4">product name:{{ product.title }}</p>
+                                 <p class="subtitle is-6">price:{{ product.price }}</p>
+                                 <p class="subtitle is-6">stock quantity:{{ product.num_available }}</p>
+                              </div>
+                           </div>
+                      </div>
+                             <footer class="card-footer">
+                                <a href="{% url 'editProduct' product.pk %}" class="edit-button">Edit </a>
+                                <a href="{% url 'deleteProduct' product.pk %}" class="edit-button"> Delete </a>
+                                <a href="{% url 'product_detail' product.category.slug product.slug %}" class="cart-footer-item">View product</a>
+                             </footer>
+                   </div>
+                </div>
+            {% endfor %}
+   </div> -->
+   {% with products as list_products %}
+        {% include 'parts/product_Manage_list.html' %}
+    {% endwith %}
+{% endblock %}

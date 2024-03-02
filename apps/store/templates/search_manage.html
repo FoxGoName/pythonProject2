@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Search | {% endblock %}
+
+{% block content %}
+<h1>Search Results</h1>
+
+<form action="{% url 'searchManage' %}" method="GET">
+    <input type="text" name="q" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+{% if query %}
+    <p>Showing results for "{{ query }}":</p>
+{% else %}
+    <p>Showing all results:</p>
+{% endif %}
+
+{% if results %}
+    <ul>
+        {% for product in results %}
+            <li>{{ product.title }}</li>
+        {% empty %}
+            <li>No results found.</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No results found.</p>
+{% endif %}
+{% with products as list_products %}
+        {% include 'parts/product_manage_list.html' %}
+{% endwith %}
+{% endblock %}
