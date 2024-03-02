@@ -6,4 +6,6 @@ template：search_ manage.html // 提供搜索欄
           parts/product_manage.list.html //render 商品數量 crud
 view： search_Manage 
 
-a
+a 
+
+测试
