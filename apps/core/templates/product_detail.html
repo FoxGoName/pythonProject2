@@ -5,7 +5,7 @@
 {% block content %}
 
 <div id="productapp">
-    <img src="/{{ product.image }}">
+    <img src="{{ product.image.url }}" alt="test" width="200" height="300">
     <h1>Product Name: {{ product.title }}</h1>
     <h1>Product Price: {{ product.price }}</h1>
     <h1>Product Category: {{ product.category }}</h1>
