@@ -11,7 +11,7 @@
                 <div class="table">
                     <table class="table is-fullwidth is-striped">
                         <thead>
-                            <th></th>
+                            {% comment %} <th></th> {% endcomment %}
                             <th>Product</th>
                             <th>Quantity</th>
                             <th>Price</th>
@@ -20,11 +20,11 @@
 
                         <tbody>
                             <tr v-for="product in products">
-                                <td>
+                                {% comment %} <td>
                                     <figure class="image is-48x48">
-                                        <img :src="product.thumbnail">
+                                        <img :src="product.thumbnail.url" alt="test" width="48" height="48">
                                     </figure>
-                                </td>
+                                </td> {% endcomment %}
                                 <td>
                                     <a :href="product.url">
                                         [[ product.title ]]
@@ -40,7 +40,7 @@
                             <tr>
                                 <td>Total cost:</td>
                                 <td>[[ numItems ]]</td>
-                                <td></td>
+                                {% comment %} <td></td> {% endcomment %}
                                 <td>[[ totalCost ]]</td>
                             </tr>
                         </tfoot>
