@@ -6,9 +6,6 @@
     <nav class="breadcrumb" aria-label="breadcrumbs">
         <ul>
             <li><a href="{% url 'frontpage' %}">Home</a></li>
-            {% if category.parent %}
-                <li><a href="{% url 'category_detail' category.parent.slug %}">{{ category.parent.title }}</a></li>
-            {% endif %}
             <li class="is-active"><a href="{% url 'category_detail' category.slug %}">{{ category.title }}</a></li>
         </ul>
     </nav>

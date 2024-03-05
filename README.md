@@ -1,4 +1,4 @@
-# saulgadgets
+# E-shop
 
 This repository is a part of a video tutorial on my YouTube channel: Code With Stein
 

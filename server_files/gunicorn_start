@@ -1,13 +1,13 @@
 #!/bin/sh
 
-NAME='saulgadgets'
-DJANGODIR=/saulroot/saul_3_6_4/saulgadgets
+NAME='E-shop'
+DJANGODIR=/saulroot/saul_3_6_4/E-shop
 SOCKFILE=/saulroot/saul_3_6_4/run/gunicorn.sock
 USER=sauluser
 GROUP=saulgroup
 NUM_WORKERS=3
-DJANGO_SETTINGS_MODULE=saulgadgets.settingsprod
-DJANGO_WSGI_MODULE=saulgadgets.wsgi
+DJANGO_SETTINGS_MODULE=E-shop.settingsprod
+DJANGO_WSGI_MODULE=E-shop.wsgi
 TIMEOUT=120
 
 cd $DJANGODIR

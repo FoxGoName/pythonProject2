@@ -11,8 +11,8 @@ def decrement_product_quantity(order):
 
 def send_order_confirmation(order):
     subject = 'Order confirmation'
-    from_email = 'noreply@saulgadgets.com'
-    to = ['mail@saulgadgets.com', order.email]
+    from_email = 'noreply@E-shop.com'
+    to = ['mail@E-shop.com', order.email]
     text_content = 'Your order is successful!'
     html_content = render_to_string('order_confirmation.html', {'order': order})
 

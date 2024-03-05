@@ -7,9 +7,7 @@
         <nav class="breadcrumb" aria-label="breadcrumbs">
             <ul>
                 <li><a href="{% url 'frontpage' %}">Home</a></li>
-                {% if product.category.parent %}
-                    <li><a href="{% url 'category_detail' product.category.parent.slug %}">{{ product.category.parent.title }}</a></li>
-                {% endif %}
+
                 <li><a href="{% url 'category_detail' product.category.slug %}">{{ product.category.title }}</a></li>
                 <li class="is-active"><a href="{% url 'product_detail' product.category.slug product.slug %}">{{ product.title }}</a></li>
             </ul>
@@ -43,69 +41,7 @@
 
         <h2 class="subtitle">Add to cart</h2>
 
-        {% if product.variants.all %}
-            <div class="columns">
-                <div class="column is-6">
-                    <table class="table is-fullwidth">
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <figure class="image is-48x48">
-                                        {% if product.thumbnail.url %}
-                                            <img src="{{ product.thumbnail.url }}">
-                                        {% endif %}
-                                    </figure>
-                                </td>
-
-                                <td>
-                                    {{ product.title }}
-                                </td>
-
-                                <td>
-                                    {% if product.in_cart %}
-                                        <p>Already in cart!</p>
-                                    {% else %}
-                                        {% if product.num_available > 0 %}
-                                            <button @click="addToCart({{ product.id }})" class="button is-success">Add to cart</button>
-                                        {% else %}
-                                            <p>The product is out of stock!</p>
-                                        {% endif %}
-                                    {% endif %}
-                                </td>
-                            </tr>
-
-                            {% for variant in product.variants.all %}
-                                <tr>
-                                    <td>
-                                        <figure class="image is-48x48">
-                                            {% if variant.thumbnail.url %}
-                                                <img src="{{ variant.thumbnail.url }}">
-                                            {% endif %}
-                                        </figure>
-                                    </td>
-
-                                    <td>
-                                        {{ variant.title }}
-                                    </td>
-
-                                    <td>
-                                        {% if variant.in_cart %}
-                                            <p>Already in cart!</p>
-                                        {% else %}
-                                            {% if variant.num_available > 0 %}
-                                                <button @click="addToCart({{ variant.id }})" class="button is-success">Add to cart</button>
-                                            {% else %}
-                                                <p>The product is out of stock!</p>
-                                            {% endif %}
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        {% else %}
+        
             {% if product.in_cart %}
                 <p>Already in cart!</p>
             {% else %}
@@ -115,7 +51,7 @@
                     <p>The product is out of stock!</p>
                 {% endif %}
             {% endif %}
-        {% endif %}
+        
 
         <article class="message is-success" v-if="showMessage">
             <div class="message-body">

@@ -1,5 +1,5 @@
 """
-ASGI config for saulgadgets project.
+ASGI config for E-shop project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'saulgadgets.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'E-shop.settings')
 
 application = get_asgi_application()
