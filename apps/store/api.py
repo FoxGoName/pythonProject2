@@ -17,37 +17,62 @@ from apps.order.views import render_to_pdf
 from apps.order.utils import checkout
 
 from .models import Product
-from apps.order.models import Order
+from apps.order.models import Order, OrderItem
 
 from .utilities import decrement_product_quantity, send_order_confirmation
 
-def validate_payment(request):
+def api_checkout(request):
+    cart = Cart(request)
+
+    print(request.body)
+
     data = json.loads(request.body)
-    razorpay_payment_id = data['razorpay_payment_id']
-    razorpay_order_id = data['razorpay_order_id']
-    razorpay_signature = data['razorpay_signature']
+    jsonresponse = {'success': True}
+    first_name = data['first_name']
+    last_name = data['last_name']
+    email = data['email']
+    address = data['address']
+    zipcode = data['zipcode']
+    place = data['place']
+    phone = data['phone']
 
-    client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY_PUBLISHABLE, settings.RAZORPAY_API_KEY_HIDDEN))
+    orderid = checkout(request, first_name, last_name, email, address, zipcode, place, phone)
 
-    params_dict = {
-        'razorpay_payment_id': razorpay_payment_id,
-        'razorpay_order_id': razorpay_order_id,
-        'razorpay_signature': razorpay_signature
-    }
+    order = Order.objects.get(pk=orderid)
+    order.paid_amount = cart.get_total_cost()
+    order.save()
 
-    res = client.utility.verify_payment_signature(params_dict)
+    cart.clear()
 
-    print(res)
+    return JsonResponse(jsonresponse)
+    
+# def validate_payment(request):
+#     data = json.loads(request.body)
+#     razorpay_payment_id = data['razorpay_payment_id']
+#     razorpay_order_id = data['razorpay_order_id']
+#     razorpay_signature = data['razorpay_signature']
 
-    if not res:
-        order = Order.objects.get(payment_intent=razorpay_order_id)
-        order.paid = True
-        order.save()
+#     client = razorpay.Client(auth=(settings.RAZORPAY_API_KEY_PUBLISHABLE, settings.RAZORPAY_API_KEY_HIDDEN))
 
-        decrement_product_quantity(order)
-        send_order_confirmation(order)
+#     params_dict = {
+#         'razorpay_payment_id': razorpay_payment_id,
+#         'razorpay_order_id': razorpay_order_id,
+#         'razorpay_signature': razorpay_signature
+#     }
 
-    return JsonResponse({'success': True})
+#     res = client.utility.verify_payment_signature(params_dict)
+
+#     print(res)
+
+#     if not res:
+#         order = Order.objects.get(payment_intent=razorpay_order_id)
+#         order.paid = True
+#         order.save()
+
+#         decrement_product_quantity(order)
+#         send_order_confirmation(order)
+
+#     return JsonResponse({'success': True})
 
 def create_checkout_session(request):
     data = json.loads(request.body)

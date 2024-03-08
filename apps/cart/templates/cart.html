@@ -56,7 +56,7 @@
 
                 <h2 class="title">Contact information</h2>
 
-                <div class="columns">
+                {% comment %} <div class="columns">
                     <div class="column is-6">
                         <div class="field">
                             <label>First name</label>
@@ -116,18 +116,82 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
                 
-                <div class="field">
+                {% comment %} <div class="field">
                     <div class="control">
                         <button class="button is-primary" v-on:click="buy('stripe')">Pay with stripe</button>
                         <button class="button is-primary" v-on:click="buy('razorpay')">Pay with razorpay</button>
                     
                         <div id="paypal-button-container" class="mt-4"></div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
             <p v-else>Your cart is empty!</p>
+
+            <form v-on:submit.prevent="submitForm()">
+                <div class="field">
+                    <label>First name</label>
+
+                    <div class="control">
+                        <input type="text" name="first_name" v-model="first_name"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Last name</label>
+
+                    <div class="control">
+                        <input type="text" name="last_name" v-model="last_name"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>E-mail</label>
+
+                    <div class="control">
+                        <input type="email" name="email" v-model="email"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Phone</label>
+
+                    <div class="control">
+                        <input type="text" name="phone" v-model="phone"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Address</label>
+
+                    <div class="control">
+                        <input type="text" name="address" v-model="address"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Zip code</label>
+
+                    <div class="control">
+                        <input type="text" name="zipcode" v-model="zipcode"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <label>Place</label>
+
+                    <div class="control">
+                        <input type="text" name="place" v-model="place"> <!--本来在type前有class="input"的-->
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="control">
+                        <button class="button is-primary">Check out</button>
+                    </div>
+                </div>
+            </form>
         {% else %}
             <p>Your cart is empty!</p>
         {% endif %}
@@ -159,20 +223,20 @@
         data () {
             return {
                 errors: [],
-                first_name: '{{ first_name }}',
-                last_name: '{{ last_name }}',
-                email: '{{ email }}',
-                address: '{{ address }}',
-                zipcode: '{{ zipcode }}',
-                place: '{{ place }}',
-                phone: '{{ phone }}',
+                first_name: '', //本来''中间是有{{ first_name }}的
+                last_name: '', //{{ last_name }}
+                email: '', //{{ email }}
+                address: '', //{{ address }}
+                zipcode: '', //{{ zipcode }}
+                place: '', //{{ place }}
+                phone: '', //{{ phone }}
                 products: [{{ productsstring|safe }}],
             }
         },
         mounted() {
             const amount = this.totalCost.toString();
 
-            paypal.Buttons({
+            /*paypal.Buttons({
                 onClick: () => {
                     if (this.validateForm() > 0) {
                         return false;
@@ -221,7 +285,7 @@
                         });
                     });
                 }
-            }).render('#paypal-button-container');
+            }).render('#paypal-button-container'); */
         },
         computed: {
             numItems: function() {
@@ -233,7 +297,7 @@
             
         },
         methods: {
-            validateForm() {
+            /*validateForm() {
                 this.errors = [];
 
                 if (this.first_name === '') {
@@ -373,6 +437,41 @@
                         });
                     }
                 }
+            },*/
+            submitForm() {
+                console.log('Submit form');
+
+                var data = {
+                    'first_name': this.first_name,
+                    'last_name': this.last_name,
+                    'email': this.email,
+                    'address': this.address,
+                    'zipcode': this.zipcode,
+                    'place': this.place,
+                    'phone': this.phone,
+                    //'order_id': data.orderID
+                };
+
+                fetch('/api/checkout/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}'
+                    },
+                    credentials: 'same-origin',
+                    body: JSON.stringify(data)
+                })
+                .then((response) => {
+                    console.log('Success');
+                    console.log(response);
+
+                    window.location.href = '/';
+                })
+                .catch(function (error) {
+                    console.log('Error 2');
+                    console.log(error);
+                })
+
             },
             incrementQuantity(product_id, quantity, price) {
                 console.log('Product_id:', product_id);
