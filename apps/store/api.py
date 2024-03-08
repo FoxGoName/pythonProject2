@@ -1,5 +1,5 @@
 import json
-import stripe
+# import stripe
 import razorpay
 
 from django.conf import settings
@@ -105,16 +105,16 @@ def create_checkout_session(request):
     order_id = ''
     payment_intent = ''
     
-    if gateway == 'stripe':
-        stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
-        session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=items,
-            mode='payment',
-            success_url='http://127.0.0.1:8000/cart/success/',
-            cancel_url='http://127.0.0.1:8000/cart/'
-        )
-        payment_intent = session.payment_intent
+    # if gateway == 'stripe':
+    #     stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
+    #     session = stripe.checkout.Session.create(
+    #         payment_method_types=['card'],
+    #         line_items=items,
+    #         mode='payment',
+    #         success_url='http://127.0.0.1:8000/cart/success/',
+    #         cancel_url='http://127.0.0.1:8000/cart/'
+    #     )
+    #     payment_intent = session.payment_intent
 
     #
     # Create order

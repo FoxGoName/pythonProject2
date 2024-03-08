@@ -1,5 +1,5 @@
 import json
-import stripe
+# import stripe
 
 from django.conf import settings
 from django.http import HttpResponse
@@ -15,14 +15,14 @@ def webhook(request):
     payload = request.body
     event = None
 
-    stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
+    # stripe.api_key = settings.STRIPE_API_KEY_HIDDEN
 
-    try:
-        event = stripe.Event.construct_from(
-            json.loads(payload), stripe.api_key
-        )
-    except ValueError as e:
-        return HttpResponse(status=400)
+    # try:
+    #     event = stripe.Event.construct_from(
+    #         json.loads(payload), stripe.api_key
+    #     )
+    # except ValueError as e:
+    #     return HttpResponse(status=400)
 
     if event.type == 'payment_intent.succeeded':
         payment_intent = event.data.object

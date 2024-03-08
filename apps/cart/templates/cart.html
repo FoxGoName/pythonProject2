@@ -9,7 +9,7 @@
         {% if cart %}
             <div v-if="products.length > 0">
                 <div class="table">
-                    <table class="table is-fullwidth is-striped">
+                    <table class="table"> {% comment %}本来table后面还有 is-fullwidth is-striped{% endcomment %}
                         <thead>
                             {% comment %} <th></th> {% endcomment %}
                             <th>Product</th>
@@ -212,7 +212,7 @@
 {% endblock %}
 
 {% block scripts %}
-<script type="application/javascript" src="https://js.stripe.com/v3/"></script>
+{% comment %} <script type="application/javascript" src="https://js.stripe.com/v3/"></script> {% endcomment %}
 <script type="application/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script type="application/javascript" src="https://www.paypal.com/sdk/js?client-id={{ pub_key_paypal }}"></script>
 <script>
