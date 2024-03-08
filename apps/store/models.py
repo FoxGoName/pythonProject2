@@ -9,7 +9,7 @@ class Category(models.Model):
     title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
     ordering = models.IntegerField(default=0)
-    is_featured = models.BooleanField(default=False)
+    # is_featured = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Categories'
@@ -28,7 +28,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True, null=True)
     price = models.FloatField()
-    is_featured = models.BooleanField(default=False)
+    # is_featured = models.BooleanField(default=False)
     num_available = models.IntegerField(default=1)
     num_visits = models.IntegerField(default=0)
     last_visit = models.DateTimeField(blank=True, null=True)
