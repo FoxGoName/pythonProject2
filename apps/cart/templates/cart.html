@@ -130,7 +130,7 @@
             <p v-else>Your cart is empty!</p>
 
             <form v-on:submit.prevent="submitForm()">
-                <div class="field">
+                {% comment %} <div class="field">
                     <label>First name</label>
 
                     <div class="control">
@@ -184,7 +184,7 @@
                     <div class="control">
                         <input type="text" name="place" v-model="place"> <!--本来在type前有class="input"的-->
                     </div>
-                </div>
+                </div> {% endcomment %}
 
                 <div class="field">
                     <div class="control">
@@ -213,8 +213,8 @@
 
 {% block scripts %}
 {% comment %} <script type="application/javascript" src="https://js.stripe.com/v3/"></script> {% endcomment %}
-<script type="application/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script type="application/javascript" src="https://www.paypal.com/sdk/js?client-id={{ pub_key_paypal }}"></script>
+{% comment %} <script type="application/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script> {% endcomment %}
+{% comment %} <script type="application/javascript" src="https://www.paypal.com/sdk/js?client-id={{ pub_key_paypal }}"></script> {% endcomment %}
 <script>
     var productapp = new Vue({
         el: '#cartapp',
@@ -223,13 +223,13 @@
         data () {
             return {
                 errors: [],
-                first_name: '', //本来''中间是有{{ first_name }}的
-                last_name: '', //{{ last_name }}
-                email: '', //{{ email }}
-                address: '', //{{ address }}
-                zipcode: '', //{{ zipcode }}
-                place: '', //{{ place }}
-                phone: '', //{{ phone }}
+                first_name: '{{ request.user.first_name }}', //本来''中间是有{{ first_name }}的 第2次修改：中间加上{{ request.user.first_name }}
+                last_name: '{{ request.user.last_name }}', //{{ last_name }} 同上
+                email: '{{ request.user.email }}', //{{ email }} 同上
+                address: '{{ request.user.userprofile.address }}', //{{ address }} 同上
+                zipcode: '{{ request.user.userprofile.zipcode }}', //{{ zipcode }} 同上
+                place: '{{ request.user.userprofile.place }}', //{{ place }} 同上
+                phone: '{{ request.user.userprofile.phone }}', //{{ phone }} 同上
                 products: [{{ productsstring|safe }}],
             }
         },
