@@ -19,10 +19,11 @@
 
     <h2 class="subtitle">My orders</h2>
 
-    {% for order in request.user.orders.all %}
+    {% for order in request.user.orders.all|dictsortreversed:"created_at" %}
         <article class="message is-light">
             <div class="message-header">
-                <p>{{ order.created_at }}</p>
+                <p>Order ID: {{ order.id }}</p>
+                <p>Created time: {{ order.created_at }}</p>
                 <p><strong>Status: </strong>{{ order.status }}</p>
             </div>
 
