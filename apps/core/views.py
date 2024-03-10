@@ -66,3 +66,9 @@ class deleteProductView(DeleteView):
     model = Product
     template_name = "delete_product.html"
     success_url = reverse_lazy('productManager')
+
+from django.shortcuts import render
+from apps.order.models import Order
+def order_list(request):
+    orders = Order.objects.all()
+    return render(request, 'order_list.html', {'orders': orders})

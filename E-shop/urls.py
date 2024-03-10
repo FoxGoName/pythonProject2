@@ -14,7 +14,7 @@ from apps.userprofile.views import signup, myaccount
 
 # from apps.newsletter.api import api_add_subscriber
 from apps.store.api import api_add_to_cart, api_remove_from_cart, create_checkout_session, api_checkout #, validate_payment
-from apps.core.views import productManagePage
+from apps.core.views import productManagePage,order_list
 from .sitemaps import StaticViewSitemap, CategorySitemap, ProductSitemap
 from apps.store.views import productCreateView, editProductView, deleteProductView
 
@@ -22,6 +22,7 @@ sitemaps = {'static': StaticViewSitemap, 'product': ProductSitemap, 'category': 
 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
+    path('orders/', order_list, name='order_list'),
     path('search/', search, name='search'),
     path('search_manage/', search_Manage, name='searchManage'),
     path('cart/', cart_detail, name='cart'),
@@ -51,6 +52,7 @@ urlpatterns = [
     path('api/checkout/', api_checkout, name='api_checkout'),
 
     #projectManager
+
     path('productManager/', productManagePage, name="productManager"),
     path('productManager/add/', productCreateView.as_view(), name="addProduct"),
     path('productManager/edit/<int:pk>/', editProductView.as_view(), name='editProduct'),
