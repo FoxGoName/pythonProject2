@@ -5,6 +5,8 @@
     <div class="column is-6 is-offset-3">
         <h1 class="title">Log in</h1>
 
+        <p>If you don't have an account, press <a href="{% url 'login' %}">here to sign up</a>.</p></br>
+
         <form method="post" action=".">
             {% csrf_token %}
     
