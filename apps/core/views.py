@@ -10,17 +10,31 @@ from django.shortcuts import redirect
 
 from django import forms
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
 def frontpage(request):
     products = Product.objects.all()
     featured_categories = Category.objects.all()
     popular_products = Product.objects.all().order_by('-num_visits')[0:4]
     recently_viewed_products = Product.objects.all().order_by('-last_visit')[0:4]
+    all_products = Product.objects.all()
+    paginator = Paginator(all_products, 8)  # Limiting 8 products per page
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
+
 
     context = {
         'products': products,
         'featured_categories': featured_categories,
         'popular_products': popular_products,
-        'recently_viewed_products': recently_viewed_products
+        'recently_viewed_products': recently_viewed_products,
+
     }
 
     return render(request, 'frontpage.html', context)
