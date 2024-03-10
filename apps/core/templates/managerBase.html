@@ -18,11 +18,12 @@
 				</a>
 			</div>
 
-			<div id="main-navbar" class="navbar-menu">
+			<div id="main-navbar" class="navbar-menu" >
+
 				<div class="navbar-end">
 
 					{% for category in menu_categories %}
-					    <a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
+					    <a href="{% url 'manager_category' category.slug %}" class="navbar-item">{{ category.title }}</a>
 					{% endfor %}
 
 				</div>

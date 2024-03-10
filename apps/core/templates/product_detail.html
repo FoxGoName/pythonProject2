@@ -13,7 +13,11 @@
     <h1>Product Description: {{ product.description }}</h1>
     {% endif %}
 
-    <button @click="addToCart({{ product.id }})">Add to cart</button>
+    {% if request.user.is_authenticated %}
+        <button @click="addToCart({{ product.id }})">Add to cart</button>
+    {% else %}
+        <a href="{% url 'login' %}" class="button is-light">Add to cart</a>
+    {% endif %}
 </div>
 {% endblock %}
 

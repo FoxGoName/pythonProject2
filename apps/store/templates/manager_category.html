@@ -1,19 +1,18 @@
 {% extends 'managerBase.html' %}
-{% block content %}
-             <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
-             <!-- <div class="product-list">
-                 {% for product in products %}
-                 <div class="product">
-                     <span>{{ product.id }}</span>
-                     <span>{{ product.title }}</span>
-                     <a href="{% url 'editProduct' product.pk %}" class="edit-button">Edit</a>
-                     <a href="{% url 'deleteProduct' product.pk %}" class="edit-button">Delete</a>
-                 </div>
-                 {% endfor %}
-             </div>
-         </div> -->
 
-         <div class = "columns is-multiline" >
+{% block title %}{{ category.title }} | {% endblock %}
+
+{% block content %}
+    <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+            <li><a href="{% url 'productManager' %}">Shop</a></li>
+            <li class="is-active"><a href="{% url 'manager_category' category.slug %}">{{ category.title }}</a></li>
+        </ul>
+    </nav>
+
+    <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
+
+    <div class = "columns is-multiline" >
             {% for product in products %}
                 <div class="column is-3">
                    <div class="card">
@@ -35,4 +34,4 @@
                 </div>
             {% endfor %}
          </div>
-{% endblock%}
+{% endblock %}
