@@ -101,7 +101,7 @@ class productCreateView(CreateView):
     fields = '__all__'
 
     def get_success_url(self):
-        return reverse("frontpage")
+        return reverse("productManager")
 
 class editProductView(UpdateView):
     model = Product
@@ -110,12 +110,13 @@ class editProductView(UpdateView):
 
     def get_success_url(self):
         product = self.object  # 获取正在编辑的产品对象
-        return reverse("product_detail", kwargs={'category_slug': product.category.slug, 'slug': product.slug})
+        return reverse("productManager")
+    #, kwargs = {'category_slug': product.category.slug, 'slug': product.slug}
 
 class deleteProductView(DeleteView):
     model = Product
     template_name = "delete_product.html"
-    success_url = reverse_lazy('frontpage')
+    success_url = reverse_lazy('productManager')
 
 
 # def search_Manage(request):
