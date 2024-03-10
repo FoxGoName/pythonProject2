@@ -1,6 +1,6 @@
 import json
 # import stripe
-import razorpay
+# import razorpay
 
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives

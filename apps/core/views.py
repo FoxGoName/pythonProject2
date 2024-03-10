@@ -6,6 +6,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 
 from django.urls import reverse, reverse_lazy
 
+from django.shortcuts import redirect
+
 from django import forms
 
 def frontpage(request):
@@ -47,7 +49,7 @@ class productCreateView(CreateView):
     form_class = ProductForm
 
     def get_success_url(self):
-        return reverse("frontpage")
+        return reverse("productManager")
 
 
 
@@ -63,4 +65,4 @@ class editProductView(UpdateView):
 class deleteProductView(DeleteView):
     model = Product
     template_name = "delete_product.html"
-    success_url = reverse_lazy('frontpage')
+    success_url = reverse_lazy('productManager')

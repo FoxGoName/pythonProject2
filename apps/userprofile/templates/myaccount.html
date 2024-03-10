@@ -3,7 +3,10 @@
 {% block content %}
     <h1 class="title">My account</h1>
 
-    <a href="{% url 'logout' %}" class="button is-danger">Log out</a>
+    <form action="{% url 'logout' %}" method="post" class="button is-danger">
+        {% csrf_token %}
+        <button type="submit" class="button is-danger">Logout</button>
+    </form>
 
     <hr>
 
@@ -40,7 +43,9 @@
                     <tbody>
                         {% for item in order.items.all %}
                             <tr>
-                                <td>{{ item.product.title }}</td>
+                                <td><a href="{{ item.product.title }}">
+                                        {{ item.product.title }}
+                                    </a></td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.price }}</td>
                             </tr>
