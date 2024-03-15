@@ -25,10 +25,11 @@
     {% for order in request.user.orders.all|dictsortreversed:"created_at" %}
         <article class="message is-light">
             <div class="message-header">
-                <p>Order ID: {{ order.id }}</p>
-                <p>Created time: {{ order.created_at }}</p>
-                <p><strong>Address: </strong>{{ request.user.userprofile.address }}</p>  {# Add this line to display the order address #}
-                <p><strong>Status: </strong>{{ order.status }}</p>
+                <p>Order ID: {{ order.id }}<br>
+                   Created time: {{ order.created_at }}<br>
+                   Address: {{ order.user.userprofile.address }}<br>
+                   Status: {{ order.status }}
+                 </p>
             </div>
 
             <div class="message-body">

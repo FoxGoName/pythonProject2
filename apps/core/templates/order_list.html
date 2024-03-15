@@ -1,7 +1,8 @@
 {% extends 'managerBase.html' %}
 {% block content %}
-    <h1>All Orders</h1>
-    <table>
+    <h1 class="title">All orders</h1>
+    <hr>
+    {% comment %} <table>
         <thead>
             <tr>
                 <th>Order ID</th>
@@ -28,5 +29,52 @@
                 {% endfor %}
             {% endfor %}
         </tbody>
-    </table>
+    </table> {% endcomment %}
+    {% for order in orders|dictsortreversed:"created_at" %}
+        <article class="message is-light">
+            <div class="message-header">
+                <p>Order ID: {{ order.id }}<br>
+                   Created time: {{ order.created_at }}<br>
+                   User name: {{ order.user.username }}<br>
+                   Address: {{ order.user.userprofile.address }}<br>
+                   Status: {{ order.status }}
+                </p>
+            </div>
+
+            <div class="message-body">
+                
+                <table class="table"> {% comment %}本来table后面还有 is-striped is-fullwidth{% endcomment %}
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for item in order.items.all %}
+                            <tr>
+                                <td><a href="{{ item.product.title }}">
+                                        {{ item.product.title }}
+                                    </a></td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.price }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td>{{ order.get_total_quantity }}</td>
+                            <td>{{ order.paid_amount }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </article>
+    {% empty %}
+        <p>You don't have any order yet...</p>
+    {% endfor %}
 {% endblock %}
