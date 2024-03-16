@@ -33,27 +33,27 @@
         {% include 'parts/product_list.html' %}
     {% endwith %}   {% endcomment %}
 
-    {% if products.has_other_pages %}
-        <div class="pagination">
-            {% if products.has_previous %}
-                <a href="?page=1">&laquo; First</a>
-                <a href="?page={{ products.previous_page_number }}">Previous</a>
-            {% endif %}
+    {% comment %} {% if products.has_other_pages %}
+    <div class="pagination">
+        {% if products.has_previous %}
+            <a href="?page=1" class="pagination-link">&laquo; First</a>
+            <a href="?page={{ products.previous_page_number }}" class="pagination-link">Previous</a>
+        {% endif %}
 
-            {% for i in products.paginator.page_range %}
-                {% if products.number == i %}
-                    <span class="current-page">{{ i }}</span>
-                {% else %}
-                    <a href="?page={{ i }}">{{ i }}</a>
-                {% endif %}
-            {% endfor %}
-
-            {% if products.has_next %}
-                <a href="?page={{ products.next_page_number }}">Next</a>
-                <a href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
+        {% for i in products.paginator.page_range %}
+            {% if products.number == i %}
+                <span class="pagination-link current-page">{{ i }}</span>
+            {% else %}
+                <a href="?page={{ i }}" class="pagination-link">{{ i }}</a>
             {% endif %}
-        </div>
-    {% endif %}
+        {% endfor %}
+
+        {% if products.has_next %}
+            <a href="?page={{ products.next_page_number }}" class="pagination-link">Next</a>
+            <a href="?page={{ products.paginator.num_pages }}" class="pagination-link">Last &raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %} {% endcomment %}
 
 
 

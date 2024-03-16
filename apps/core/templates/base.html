@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
 		<link rel="stylesheet" href="{% static 'main.css' %}">
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-pageloader@0.9.0/css/bulma-pageloader.min.css">
 	</head>
 
 	<body>
@@ -74,6 +75,8 @@
 							</div>
 						</div>
 					{% endif %}
+
+					
 				</div>
 			</div>
 		</nav>
@@ -83,7 +86,42 @@
             {% endblock %}
 		</section>
 
+		{% if products.has_other_pages %}
+    	<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        	{% if products.has_previous %}
+            	<a href="?page=1" class="pagination-previous">First</a>
+            	<a href="?page={{ products.previous_page_number }}" class="pagination-previous">Previous</a>
+        	{% else %}
+            	<a class="pagination-previous" disabled>First</a>
+            	<a class="pagination-previous" disabled>Previous</a>
+        	{% endif %}
+
+        	<ul class="pagination-list">
+            	{% for num in products.paginator.page_range %}
+                	{% if num == products.number %}
+                    	<li>
+                        	<a href="?page={{ num }}" class="pagination-link is-current" aria-label="Page {{ num }}" aria-current="page">{{ num }}</a>
+                    	</li>
+                	{% else %}
+                    	<li>
+                        	<a href="?page={{ num }}" class="pagination-link" aria-label="Goto page {{ num }}">{{ num }}</a>
+                    	</li>
+                	{% endif %}
+            	{% endfor %}
+        	</ul>
+
+        	{% if products.has_next %}
+            	<a href="?page={{ products.next_page_number }}" class="pagination-next">Next</a>
+            	<a href="?page={{ products.paginator.num_pages }}" class="pagination-next">Last</a>
+        	{% else %}
+            	<a class="pagination-next" disabled>Next</a>
+            	<a class="pagination-next" disabled>Last</a>
+     		{% endif %}
+    	</nav>
+		{% endif %}
+
 		{% comment %} {% include 'parts/newsletter.html' %} {% endcomment %}
+
 
 		<footer class="footer">
 			<div class="columns">
