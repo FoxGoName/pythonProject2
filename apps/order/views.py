@@ -34,3 +34,8 @@ def admin_order_pdf(request, order_id):
             return response
     
     return HttpResponse("Not found")
+
+from apps.order.models import Order
+def user_order_list(request):
+    orders = Order.objects.all()
+    return render(request, 'user_order_list.html', {'orders': orders})

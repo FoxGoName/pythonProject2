@@ -8,7 +8,7 @@ from django.contrib.auth import views
 from apps.cart.webhook import webhook
 from apps.cart.views import cart_detail, success
 from apps.core.views import frontpage, contact, about
-from apps.order.views import admin_order_pdf
+from apps.order.views import admin_order_pdf, user_order_list
 from apps.store.views import product_detail, category_detail, search, search_Manage, manager_category
 from apps.userprofile.views import signup, myaccount
 
@@ -23,6 +23,7 @@ sitemaps = {'static': StaticViewSitemap, 'product': ProductSitemap, 'category': 
 urlpatterns = [
     path('', frontpage, name='frontpage'),
     path('orders/', order_list, name='order_list'),
+    path('user_orders/', user_order_list, name='user_order_list'),
     path('search/', search, name='search'),
     path('search_manage/', search_Manage, name='searchManage'),
     path('cart/', cart_detail, name='cart'),
