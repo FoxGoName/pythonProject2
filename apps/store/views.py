@@ -75,7 +75,16 @@ def product_detail(request, category_slug, slug):
 
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
-    products = category.products.all()
+    all_products = category.products.filter(is_disabled=False)
+    paginator = Paginator(all_products, 8)  # 每页显示8个产品
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
 
     context = {
         'category': category,
