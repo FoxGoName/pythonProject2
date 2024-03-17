@@ -7,7 +7,7 @@ from django.contrib.auth import views
 
 from apps.cart.webhook import webhook
 from apps.cart.views import cart_detail, success
-from apps.core.views import frontpage, contact, about
+from apps.core.views import disable_product, enable_product, frontpage, contact, about
 from apps.order.views import admin_order_pdf, user_order_list
 from apps.store.views import product_detail, category_detail, search, search_Manage, manager_category
 from apps.userprofile.views import signup, myaccount
@@ -59,6 +59,8 @@ urlpatterns = [
     path('productManager/edit/<int:pk>/', editProductView.as_view(), name='editProduct'),
     path('productManager/delete/<int:pk>/', deleteProductView.as_view(), name='deleteProduct'),
     path('productManager/<slug:slug>/', manager_category, name='manager_category'),
+    path('disable_product/<int:product_pk>/', disable_product, name='disableProduct'),
+    path('enable_product/<int:product_pk>/', enable_product, name='enableProduct'),
 
     # Store
 

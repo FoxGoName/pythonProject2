@@ -42,6 +42,11 @@
                            </div>
                       </div>
                              <footer class="card-footer">
+                                {% if product.is_disabled %}
+                                    <a href="{% url 'enableProduct' product.pk %}" class="disable-button">Enable</a>
+                                {% else %}
+                                    <a href="{% url 'disableProduct' product.pk %}" class="disable-button">Disable</a>
+                                {% endif %}
                                  &nbsp<a href="{% url 'editProduct' product.pk %}" class="edit-button">Edit</a>&nbsp
                                  <a href="{% url 'deleteProduct' product.pk %}" class="edit-button">Delete</a>
                              </footer>

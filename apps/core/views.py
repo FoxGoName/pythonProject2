@@ -13,11 +13,11 @@ from django import forms
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def frontpage(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(is_disabled=False)
     featured_categories = Category.objects.all()
     popular_products = Product.objects.all().order_by('-num_visits')[0:4]
     recently_viewed_products = Product.objects.all().order_by('-last_visit')[0:4]
-    all_products = Product.objects.all()
+    all_products = Product.objects.filter(is_disabled=False)
     paginator = Paginator(all_products, 8)  # Limiting 8 products per page
     page = request.GET.get('page')
 
@@ -86,3 +86,16 @@ from apps.order.models import Order
 def order_list(request):
     orders = Order.objects.all()
     return render(request, 'order_list.html', {'orders': orders})
+
+def disable_product(request, product_pk):
+    product = Product.objects.get(pk=product_pk)
+    product.is_disabled = True
+    product.save()
+    return redirect('productManager')
+
+# 解除禁用产品
+def enable_product(request, product_pk):
+    product = Product.objects.get(pk=product_pk)
+    product.is_disabled = False
+    product.save()
+    return redirect('productManager')
