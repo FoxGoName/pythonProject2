@@ -1,5 +1,6 @@
 {% extends 'managerBase.html' %}
 {% block content %}
+             <a href="{% url 'order_list' %}">Orders</a><br>
              <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
              <!-- <div class="product-list">
                  {% for product in products %}
