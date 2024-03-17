@@ -48,3 +48,6 @@ class OrderItem(models.Model):
 
     def __str__(self):
         return '%s' % self.id
+
+    def subtotal(self):
+        return  self.price * self.quantity

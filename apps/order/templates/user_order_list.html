@@ -22,7 +22,8 @@
                         <tr>
                             <th>Title</th>
                             <th>Quantity</th>
-                            <th>Price</th>
+                            <th>Unit Price</th>
+                            <th>Total</th>
                         </tr>
                     </thead>
 
@@ -34,6 +35,7 @@
                                     </a></td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.price }}</td>
+                                <td>{{ item.subtotal}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -42,6 +44,7 @@
                         <tr>
                             <td>Total</td>
                             <td>{{ order.get_total_quantity }}</td>
+                            <td> </td>
                             <td>{{ order.paid_amount }}</td>
                         </tr>
                     </tfoot>
