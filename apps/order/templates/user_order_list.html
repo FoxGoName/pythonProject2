@@ -1,54 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    
-<h2 class="subtitle">My orders</h2>
-    
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
 
     {% for order in request.user.orders.all|dictsortreversed:"created_at" %}
         <article class="message is-light">
             <div class="message-header">
-                <p>Order ID: {{ order.id }}<br>
+                <h4>Order ID: {{ order.id }}<br>
                    Created time: {{ order.created_at }}<br>
                    Address: {{ order.user.userprofile.address }}<br>
-                   Status: {{ order.status }}
-                 </p>
+                   Status: {{ order.status }}<br>
+                    Total Amount:{{ order.paid_amount }}
+                 </h4>
+                <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#collapse{{order.id}}"
+                        aria-expanded="false" data-subject="{{order.id}}" aria-controls="collapse{{order.id}}">View Order Detail</button>
             </div>
 
             <div class="message-body">
-                
-                <table class="table"> {% comment %}本来table后面还有 is-striped is-fullwidth{% endcomment %}
-                    <thead>
-                        <tr>
-                            <th>Title</th>
-                            <th>Quantity</th>
-                            <th>Unit Price</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for item in order.items.all %}
+                <div id="collapse{{order.id}}" class="collapse" aria-labelledby="heading{{order.id}}"
+                      aria-expanded="false">
+                    <table class="table"> {% comment %}本来table后面还有 is-striped is-fullwidth{% endcomment %}
+                        <thead>
                             <tr>
-                                <td><a href="{{ item.product.title }}">
-                                        {{ item.product.title }}
-                                    </a></td>
-                                <td>{{ item.quantity }}</td>
-                                <td>{{ item.price }}</td>
-                                <td>{{ item.subtotal}}</td>
+                                <th>Title</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total</th>
                             </tr>
+                        </thead>
+                        {% for item in order.items.all %}
+                            <tbody>
+                                <tr>
+                                    <td><a href="{{ item.product.title }}">
+                                                {{ item.product.title }}</a></td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>{{ item.price }}</td>
+                                    <td>{{ item.subtotal}}</td>
+                                </tr>
+                            </tbody>
                         {% endfor %}
-                    </tbody>
+                        <tfoot>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{ order.get_total_quantity }}</td>
+                                <td> </td>
+                                <td>{{ order.paid_amount }}</td>
+                            </tr>
+                        </tfoot>
 
-                    <tfoot>
-                        <tr>
-                            <td>Total</td>
-                            <td>{{ order.get_total_quantity }}</td>
-                            <td> </td>
-                            <td>{{ order.paid_amount }}</td>
-                        </tr>
-                    </tfoot>
-                </table>
+                    </table>
+                </div>
             </div>
         </article>
     {% empty %}
