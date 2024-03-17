@@ -10,6 +10,7 @@ from apps.cart.cart import Cart
 
 from .models import Product, Category, ProductReview
 from django.views.generic import CreateView, UpdateView, DeleteView
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 def search(request):
     query = request.GET.get('query')
@@ -75,6 +76,16 @@ def product_detail(request, category_slug, slug):
 def category_detail(request, slug):
     category = get_object_or_404(Category, slug=slug)
     products = category.products.all()
+    all_products = Category.objects.all()
+    paginator = Paginator(all_products, 8)  # Limiting 8 products per page
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
 
     context = {
         'category': category,
