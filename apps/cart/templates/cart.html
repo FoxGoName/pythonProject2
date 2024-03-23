@@ -31,7 +31,7 @@
                                     </a>
                                 </td>
                                 <td><button @click="decrementQuantity(product.id, product.quantity, product.price)">-</button> [[ product.quantity ]] <button @click="incrementQuantity(product.id, product.quantity, product.price)">+</button></td>
-                                <td>[[ product.total_price ]]</td>
+                                <td>[[ product.price ]]</td>
                                 <td><button @click="removeFromCart(product.id)" class="button is-danger">Remove</button></td>
                             </tr>
                         </tbody>
