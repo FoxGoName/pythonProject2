@@ -582,7 +582,13 @@
                 .then((response) => {
                     console.log(response)
 
-                    this.products = this.products.filter(product => product.id !== product_id)
+                    const removedProduct = this.products.find(product => product.id === product_id);                    
+                    const removedQuantity = removedProduct.quantity;                    
+                    const removedPrice = removedProduct.price;
+                    this.numItems -= removedQuantity;                    
+                    this.totalCost -= removedQuantity * removedPrice;
+                    this.products = this.products.filter(product => product.id !== product_id);
+                    location.reload();
                 })
                 .catch(function (error) {
                     console.log('Error 2');
