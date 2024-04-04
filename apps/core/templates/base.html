@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!-DOCTYPE html>
 <html>
 	<head>
@@ -14,7 +15,7 @@
 	<body>
 		<nav class="navbar is-dark" id="navbarapp">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="{% url 'frontpage' %}">E-shop</a>
+				<a class="navbar-item" href="{% url 'frontpage' %}">{% trans 'E-shop' %}</a>
 
 				<a @click="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
 					<span aria-hidden="true"></span>
@@ -32,7 +33,7 @@
 									<input type="text" class="input" placeholder="Search..." name="query">
 								</div>
 								<div class="control">
-									<button class="button is-success">Search</button>
+									<button class="button is-success">{% trans 'Search' %}</button>
 								</div>
 							</div>
 						</form>
@@ -57,27 +58,53 @@
 					
 					<div class="navbar-item">
 						{% if request.user.is_authenticated %}
-							<a href="{% url 'cart' %}" class="button is-primary">Cart ([[ numItems ]])</a>
+							<a href="{% url 'cart' %}" class="button is-primary">{% trans 'Cart' %} ([[ numItems ]])</a>
 						{% else %}
-							<a href="{% url 'login' %}" class="button is-primary">Cart ([[ numItems ]])</a>
+							<a href="{% url 'login' %}" class="button is-primary">{% trans 'Cart' %} ([[ numItems ]])</a>
 						{% endif %}
 					</div>
 
 					{% if request.user.is_authenticated %}
 						<div class="navbar-item">
-							<a href="{% url 'myaccount' %}" class="button is-light">My account</a>
+							<a href="{% url 'myaccount' %}" class="button is-light">{% trans 'My account' %}</a>
 						</div>
 					{% else %}
 						<div class="navbar-item">
 							<div class="buttons">
-								<a href="{% url 'signup' %}" class="button is-primary"><strong>Sign up</strong></a>
-								<a href="{% url 'login' %}" class="button is-light">Log in</a>
+								<a href="{% url 'signup' %}" class="button is-primary"><strong>{% trans 'Sign up' %}</strong></a>
+								<a href="{% url 'login' %}" class="button is-light">{% trans 'Log in' %}</a>
 							</div>
 						</div>
 					{% endif %}
 
 					
 				</div>
+			</div>
+		</nav>
+		<nav class="navbar navbar-expand-md fixed-top navbar-light box-shadow bg-white">
+			<div class="container">
+				<form class="form-inline ml-3-md" action="{% url 'set_language' %}" method="post">
+					{% csrf_token %}
+		
+					<div class="input-group">
+						<select name="language" class="form-control">
+							{% get_current_language as LANGUAGE_CODE %}
+							{% get_available_languages as LANGUAGES %}
+							{% get_language_info_list for LANGUAGES as languages %}
+							{% for language in languages %}
+		
+								<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+									{{ language.name_local }}
+								</option>
+							{% endfor %}
+						</select>
+						<div class="input-group-append">
+							<button type="submit" class="btn btn-inline btn-sm bg-success">
+								{% trans "Select" %}
+							</button>
+						</div>
+					</div>
+				</form>
 			</div>
 		</nav>
 
@@ -89,11 +116,11 @@
 		{% if products.has_other_pages %}
     	<nav class="pagination is-centered" role="navigation" aria-label="pagination">
         	{% if products.has_previous %}
-            	<a href="?page=1" class="pagination-previous">First</a>
-            	<a href="?page={{ products.previous_page_number }}" class="pagination-previous">Previous</a>
+            	<a href="?page=1" class="pagination-previous">{% trans 'First' %}</a>
+            	<a href="?page={{ products.previous_page_number }}" class="pagination-previous">{% trans 'Previous' %}</a>
         	{% else %}
-            	<a class="pagination-previous" disabled>First</a>
-            	<a class="pagination-previous" disabled>Previous</a>
+            	<a class="pagination-previous" disabled>{% trans 'First' %}</a>
+            	<a class="pagination-previous" disabled>{% trans 'Previous' %}</a>
         	{% endif %}
 
         	<ul class="pagination-list">
@@ -111,11 +138,11 @@
         	</ul>
 
         	{% if products.has_next %}
-            	<a href="?page={{ products.next_page_number }}" class="pagination-next">Next</a>
-            	<a href="?page={{ products.paginator.num_pages }}" class="pagination-next">Last</a>
+            	<a href="?page={{ products.next_page_number }}" class="pagination-next">{% trans 'Next' %}</a>
+            	<a href="?page={{ products.paginator.num_pages }}" class="pagination-next">{% trans 'Last' %}</a>
         	{% else %}
-            	<a class="pagination-next" disabled>Next</a>
-            	<a class="pagination-next" disabled>Last</a>
+            	<a class="pagination-next" disabled>{% trans 'Next' %}</a>
+            	<a class="pagination-next" disabled>{% trans 'Last' %}</a>
      		{% endif %}
     	</nav>
 		{% endif %}
@@ -126,12 +153,12 @@
 		<footer class="footer">
 			<div class="columns">
 				<div class="column is-4">
-					<h2 class="subtitle">E-shop</h2>
+					<h2 class="subtitle">{% trans 'E-shop' %}</h2>
 				</div>
 
 				<div class="column is-8">
-					<a href="{% url 'contact' %}" class="navbar-item">Contact</a>
-					<a href="{% url 'about' %}" class="navbar-item">About</a>
+					<a href="{% url 'contact' %}" class="navbar-item">{% trans 'Contact' %}</a>
+					<a href="{% url 'about' %}" class="navbar-item">{% trans 'About' %}</a>
 				</div>
 			</div>
 		</footer>

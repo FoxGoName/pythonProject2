@@ -3,16 +3,17 @@ from django.core.files import File
 from django.db import models
 from PIL import Image
 from django.contrib.auth.models import User
+from django.utils.translation import gettext as _
 
 class Category(models.Model):
     # parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
-    ordering = models.IntegerField(default=0)
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    slug = models.SlugField(max_length=255, verbose_name=_('Slug'))
+    ordering = models.IntegerField(default=0, verbose_name=_('Ordering'))
     # is_featured = models.BooleanField(default=False)
 
     class Meta:
-        verbose_name_plural = 'Categories'
+        verbose_name_plural = _('Categories')
         ordering = ('ordering',)
 
     def __str__(self):
@@ -24,14 +25,14 @@ class Category(models.Model):
 class Product(models.Model):
     category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     # parent = models.ForeignKey('self', related_name='variants', on_delete=models.CASCADE, blank=True, null=True)
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255)
-    description = models.TextField(blank=True, null=True)
-    price = models.FloatField()
+    title = models.CharField(max_length=255, verbose_name=_('Title'))
+    slug = models.SlugField(max_length=255, verbose_name=_('Slug'))
+    description = models.TextField(blank=True, null=True, verbose_name=_('Description'))
+    price = models.FloatField(verbose_name=_('Price'))
     # is_featured = models.BooleanField(default=False)
-    num_available = models.IntegerField(default=1)
-    num_visits = models.IntegerField(default=0)
-    last_visit = models.DateTimeField(blank=True, null=True)
+    num_available = models.IntegerField(default=1, verbose_name=_('Number Available'))
+    num_visits = models.IntegerField(default=0, verbose_name=_('Number of Visits'))
+    last_visit = models.DateTimeField(blank=True, null=True, verbose_name=_('Last Visit'))
 
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)

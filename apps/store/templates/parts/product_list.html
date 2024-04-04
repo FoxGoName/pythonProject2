@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="columns is-multiline">
     {% for p in list_products %}
         <div class="column is-3">
@@ -18,7 +19,7 @@
                 </div>
 
                 <footer class="card-footer">
-                    <a href="{% url 'product_detail' p.category.slug p.slug %}" class="card-footer-item">View</a>
+                    <a href="{% url 'product_detail' p.category.slug p.slug %}" class="card-footer-item">{% trans 'View' %}</a>
                 </footer>
             </div>
         </div>

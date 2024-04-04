@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-04 22:04+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: .\apps\core\templates\base.html:17 .\apps\core\templates\base.html:156
+msgid "E-shop"
+msgstr "网上商店"
+
+#: .\apps\core\templates\base.html:35
+msgid "Search"
+msgstr "搜索"
+
+#: .\apps\core\templates\base.html:60 .\apps\core\templates\base.html:62
+msgid "Cart"
+msgstr "购物车"
+
+#: .\apps\core\templates\base.html:68
+msgid "My account"
+msgstr "我的账户"
+
+#: .\apps\core\templates\base.html:73
+msgid "Sign up"
+msgstr "注册"
+
+#: .\apps\core\templates\base.html:74
+msgid "Log in"
+msgstr "登录"
+
+#: .\apps\core\templates\base.html:102
+msgid "Select"
+msgstr "选择"
+
+#: .\apps\core\templates\base.html:118 .\apps\core\templates\base.html:121
+msgid "First"
+msgstr "首页"
+
+#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
+msgid "Previous"
+msgstr "上一页"
+
+#: .\apps\core\templates\base.html:140 .\apps\core\templates\base.html:143
+msgid "Next"
+msgstr "下一页"
+
+#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
+msgid "Last"
+msgstr "尾页"
+
+#: .\apps\core\templates\base.html:160
+msgid "Contact"
+msgstr "联系我们"
+
+#: .\apps\core\templates\base.html:161
+msgid "About"
+msgstr "关于我们"
+
+#: .\apps\store\models.py:10 .\apps\store\models.py:28
+msgid "Title"
+msgstr "标题"
+
+#: .\apps\store\models.py:11 .\apps\store\models.py:29
+msgid "Slug"
+msgstr "固定链接"
+
+#: .\apps\store\models.py:12
+msgid "Ordering"
+msgstr "订购"
+
+#: .\apps\store\models.py:16
+msgid "Categories"
+msgstr "分类"
+
+#: .\apps\store\models.py:30
+msgid "Description"
+msgstr "描述"
+
+#: .\apps\store\models.py:31
+msgid "Price"
+msgstr "价格"
+
+#: .\apps\store\models.py:33
+msgid "Number Available"
+msgstr "库存数量"
+
+#: .\apps\store\models.py:34
+msgid "Number of Visits"
+msgstr "浏览数量"
+
+#: .\apps\store\models.py:35
+msgid "Last Visit"
+msgstr "上次浏览"
+
+#: .\apps\store\templates\parts\product_list.html:21
+msgid "View"
+msgstr "查看详情"

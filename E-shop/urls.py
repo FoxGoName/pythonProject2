@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.sitemaps.views import sitemap
@@ -21,6 +21,7 @@ from apps.store.views import productCreateView, editProductView, deleteProductVi
 sitemaps = {'static': StaticViewSitemap, 'product': ProductSitemap, 'category': CategorySitemap}
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', frontpage, name='frontpage'),
     path('orders/', order_list, name='order_list'),
     path('user_orders/', user_order_list, name='user_order_list'),
