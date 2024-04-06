@@ -1,27 +1,27 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
-    <h1 class="title">My account</h1>
+    <h1 class="title">{% trans 'My account' %}</h1>
 
     <form action="{% url 'logout' %}" method="post" class="button is-danger">
         {% csrf_token %}
-        <button type="submit" class="button is-danger">Logout</button>
+        <button type="submit" class="button is-danger">{% trans 'Logout' %}</button>
     </form>
 
     <hr>
 
-    <h2 class="subtitle">Account information</h2>
+    <h2 class="subtitle">{% trans 'Account information' %}</h2>
 
-    <p><strong>Name: </strong>{{ request.user.get_full_name }}</p>
-    <p><strong>E-mail: </strong>{{ request.user.email }}</p>
-    <p><strong>Address: </strong>{{ request.user.userprofile.address }}</p>
-    <p><strong>Zip and place: </strong>{{ request.user.userprofile.zipcode }} {{ request.user.userprofile.place }}</p>
-    <p><strong>Phone: </strong>{{ request.user.userprofile.phone }}</p>
+    <p><strong>{% trans 'Name: ' %}</strong>{{ request.user.get_full_name }}</p>
+    <p><strong>{% trans 'E-mail: ' %}</strong>{{ request.user.email }}</p>
+    <p><strong>{% trans 'Address: ' %}</strong>{{ request.user.userprofile.address }}</p>
+    <p><strong>{% trans 'Zip and place: ' %}</strong>{{ request.user.userprofile.zipcode }} {{ request.user.userprofile.place }}</p>
+    <p><strong>{% trans 'Phone: ' %}</strong>{{ request.user.userprofile.phone }}</p>
 
     <hr>
 
     <a href="{% url 'user_order_list' %}">
-        <h2 class="button is-hovered">My orders</h2>
+        <h2 class="button is-hovered">{% trans 'My orders' %}</h2>
     </a>
 
     

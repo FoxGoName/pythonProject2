@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 22:04+0800\n"
+"POT-Creation-Date: 2024-04-05 10:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\apps\core\templates\base.html:17 .\apps\core\templates\base.html:156
+#: .\apps\core\templates\base.html:18 .\apps\core\templates\base.html:157
 msgid "E-shop"
 msgstr "网上商店"
 
-#: .\apps\core\templates\base.html:35
+#: .\apps\core\templates\base.html:36
 msgid "Search"
 msgstr "搜索"
 
-#: .\apps\core\templates\base.html:60 .\apps\core\templates\base.html:62
+#: .\apps\core\templates\base.html:61 .\apps\core\templates\base.html:63
 msgid "Cart"
 msgstr "购物车"
 
-#: .\apps\core\templates\base.html:68
+#: .\apps\core\templates\base.html:69
+#: .\apps\userprofile\templates\myaccount.html:4
 msgid "My account"
 msgstr "我的账户"
 
-#: .\apps\core\templates\base.html:73
+#: .\apps\core\templates\base.html:74
+#: .\apps\userprofile\templates\signup.html:6
+#: .\apps\userprofile\templates\signup.html:17
 msgid "Sign up"
 msgstr "注册"
 
-#: .\apps\core\templates\base.html:74
+#: .\apps\core\templates\base.html:75
+#: .\apps\userprofile\templates\login.html:6
+#: .\apps\userprofile\templates\login.html:39
 msgid "Log in"
 msgstr "登录"
 
-#: .\apps\core\templates\base.html:102
+#: .\apps\core\templates\base.html:103
 msgid "Select"
 msgstr "选择"
 
-#: .\apps\core\templates\base.html:118 .\apps\core\templates\base.html:121
+#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
 msgid "First"
 msgstr "首页"
 
-#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
+#: .\apps\core\templates\base.html:120 .\apps\core\templates\base.html:123
 msgid "Previous"
 msgstr "上一页"
 
-#: .\apps\core\templates\base.html:140 .\apps\core\templates\base.html:143
+#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
 msgid "Next"
 msgstr "下一页"
 
-#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
+#: .\apps\core\templates\base.html:142 .\apps\core\templates\base.html:145
 msgid "Last"
 msgstr "尾页"
 
-#: .\apps\core\templates\base.html:160
+#: .\apps\core\templates\base.html:161
 msgid "Contact"
 msgstr "联系我们"
 
-#: .\apps\core\templates\base.html:161
+#: .\apps\core\templates\base.html:162
 msgid "About"
 msgstr "关于我们"
 
@@ -105,6 +110,83 @@ msgstr "浏览数量"
 msgid "Last Visit"
 msgstr "上次浏览"
 
-#: .\apps\store\templates\parts\product_list.html:21
+#: .\apps\store\templates\parts\product_list.html:22
 msgid "View"
 msgstr "查看详情"
+
+#: .\apps\userprofile\models.py:6
+msgid "user"
+msgstr "用户名"
+
+#: .\apps\userprofile\models.py:7
+msgid "address"
+msgstr "地址"
+
+#: .\apps\userprofile\models.py:8
+msgid "zipcode"
+msgstr "邮政编码"
+
+#: .\apps\userprofile\models.py:9
+msgid "place"
+msgstr "地点"
+
+#: .\apps\userprofile\models.py:10
+#, fuzzy
+msgid "phone"
+msgstr "电话号码"
+
+#: .\apps\userprofile\templates\login.html:8
+msgid "If you don't have an account, "
+msgstr "如果您还没有账户，请"
+
+#: .\apps\userprofile\templates\login.html:8
+msgid "press here to sign up"
+msgstr "点击此处注册"
+
+#: .\apps\userprofile\templates\login.html:16
+msgid "Username"
+msgstr "用户名"
+
+#: .\apps\userprofile\templates\login.html:24
+msgid "Password"
+msgstr "密码"
+
+#: .\apps\userprofile\templates\login.html:33
+msgid "Your username and password didn't match! Please try again!"
+msgstr "您的用户名和密码不匹配！请重试！"
+
+#: .\apps\userprofile\templates\myaccount.html:8
+msgid "Logout"
+msgstr "退出登录"
+
+#: .\apps\userprofile\templates\myaccount.html:13
+msgid "Account information"
+msgstr "账户信息"
+
+#: .\apps\userprofile\templates\myaccount.html:15
+msgid "Name: "
+msgstr "姓名："
+
+#: .\apps\userprofile\templates\myaccount.html:16
+msgid "E-mail: "
+msgstr "邮箱："
+
+#: .\apps\userprofile\templates\myaccount.html:17
+#, fuzzy
+#| msgid "Address: "
+msgid "Address: "
+msgstr "地址："
+
+#: .\apps\userprofile\templates\myaccount.html:18
+msgid "Zip and place: "
+msgstr "邮编和地点："
+
+#: .\apps\userprofile\templates\myaccount.html:19
+#, fuzzy
+#| msgid "Phone: "
+msgid "Phone: "
+msgstr "电话号码："
+
+#: .\apps\userprofile\templates\myaccount.html:24
+msgid "My orders"
+msgstr "我的订单"

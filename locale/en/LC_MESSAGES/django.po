@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-04 22:04+0800\n"
+"POT-Creation-Date: 2024-04-05 10:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,60 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\apps\core\templates\base.html:17 .\apps\core\templates\base.html:156
+#: .\apps\core\templates\base.html:18 .\apps\core\templates\base.html:157
 msgid "E-shop"
 msgstr ""
 
-#: .\apps\core\templates\base.html:35
+#: .\apps\core\templates\base.html:36
 msgid "Search"
 msgstr ""
 
-#: .\apps\core\templates\base.html:60 .\apps\core\templates\base.html:62
+#: .\apps\core\templates\base.html:61 .\apps\core\templates\base.html:63
 msgid "Cart"
 msgstr ""
 
-#: .\apps\core\templates\base.html:68
+#: .\apps\core\templates\base.html:69
+#: .\apps\userprofile\templates\myaccount.html:4
 msgid "My account"
 msgstr ""
 
-#: .\apps\core\templates\base.html:73
+#: .\apps\core\templates\base.html:74
+#: .\apps\userprofile\templates\signup.html:6
+#: .\apps\userprofile\templates\signup.html:17
 msgid "Sign up"
 msgstr ""
 
-#: .\apps\core\templates\base.html:74
+#: .\apps\core\templates\base.html:75
+#: .\apps\userprofile\templates\login.html:6
+#: .\apps\userprofile\templates\login.html:39
 msgid "Log in"
 msgstr ""
 
-#: .\apps\core\templates\base.html:102
+#: .\apps\core\templates\base.html:103
 msgid "Select"
 msgstr ""
 
-#: .\apps\core\templates\base.html:118 .\apps\core\templates\base.html:121
+#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
 msgid "First"
 msgstr ""
 
-#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
+#: .\apps\core\templates\base.html:120 .\apps\core\templates\base.html:123
 msgid "Previous"
 msgstr ""
 
-#: .\apps\core\templates\base.html:140 .\apps\core\templates\base.html:143
+#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
 msgid "Next"
 msgstr ""
 
-#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
+#: .\apps\core\templates\base.html:142 .\apps\core\templates\base.html:145
 msgid "Last"
 msgstr ""
 
-#: .\apps\core\templates\base.html:160
+#: .\apps\core\templates\base.html:161
 msgid "Contact"
 msgstr ""
 
-#: .\apps\core\templates\base.html:161
+#: .\apps\core\templates\base.html:162
 msgid "About"
 msgstr ""
 
@@ -105,6 +110,78 @@ msgstr ""
 msgid "Last Visit"
 msgstr ""
 
-#: .\apps\store\templates\parts\product_list.html:21
+#: .\apps\store\templates\parts\product_list.html:22
 msgid "View"
+msgstr ""
+
+#: .\apps\userprofile\models.py:6
+msgid "user"
+msgstr ""
+
+#: .\apps\userprofile\models.py:7
+msgid "address"
+msgstr ""
+
+#: .\apps\userprofile\models.py:8
+msgid "zipcode"
+msgstr ""
+
+#: .\apps\userprofile\models.py:9
+msgid "place"
+msgstr ""
+
+#: .\apps\userprofile\models.py:10
+msgid "phone"
+msgstr ""
+
+#: .\apps\userprofile\templates\login.html:8
+msgid "If you don't have an account, "
+msgstr ""
+
+#: .\apps\userprofile\templates\login.html:8
+msgid "press here to sign up"
+msgstr ""
+
+#: .\apps\userprofile\templates\login.html:16
+msgid "Username"
+msgstr ""
+
+#: .\apps\userprofile\templates\login.html:24
+msgid "Password"
+msgstr ""
+
+#: .\apps\userprofile\templates\login.html:33
+msgid "Your username and password didn't match! Please try again!"
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:8
+msgid "Logout"
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:13
+msgid "Account information"
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:15
+msgid "Name: "
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:16
+msgid "E-mail: "
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:17
+msgid "Address: "
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:18
+msgid "Zip and place: "
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:19
+msgid "Phone: "
+msgstr ""
+
+#: .\apps\userprofile\templates\myaccount.html:24
+msgid "My orders"
 msgstr ""

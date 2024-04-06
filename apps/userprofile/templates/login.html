@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 <div class="columns">
     <div class="column is-6 is-offset-3">
-        <h1 class="title">Log in</h1>
+        <h1 class="title">{% trans 'Log in' %}</h1>
 
-        <p>If you don't have an account, press <a href="{% url 'signup' %}">here to sign up</a>.</p></br>
+        <p>{% trans "If you don't have an account, " %} <a href="{% url 'signup' %}">{% trans 'press here to sign up' %}</a>.</p></br>
 
         <form method="post" action=".">
             {% csrf_token %}
@@ -13,7 +13,7 @@
             <input type="hidden" name="next" value="{{ next }}">
     
             <div class="field">
-                <label>Username</label>
+                <label>{% trans 'Username' %}</label>
     
                 <div clas="control">
                     <input type="text" class="input" name="username" id="id_username">
@@ -21,7 +21,7 @@
             </div>
     
             <div class="field">
-                <label>Password</label>
+                <label>{% trans 'Password' %}</label>
                 
                 <div clas="control">
                     <input type="password" class="input" name="password" id="id_password">
@@ -30,13 +30,13 @@
     
             {% if form.errors %}
                 <div class="notification is-danger">
-                    Your username and password didn't match! Please try again!
+                    {% trans "Your username and password didn't match! Please try again!" %}
                 </div>
             {% endif %}
     
             <div class="field">
                 <div class="control">
-                    <button class="button is-success">Log in</button>
+                    <button class="button is-success">{% trans 'Log in' %}</button>
                 </div>
             </div>
         </form>
