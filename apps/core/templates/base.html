@@ -26,9 +26,9 @@
 
 			<div id="main-navbar" class="navbar-menu" :class="{ 'is-active': menuClass }">
 				<div class="navbar-start">
-					<div class="navbar-item">
-						<form method="get" action="{% url 'search' %}">
-							<div class="field has-addons">
+					<div class="navbar-item is-expanded" style="margin-top: 0.8rem;">
+						<form method="get" action="{% url 'search' %}" class="is-flex is-justify-content-center">
+							<div class="field has-addons is-centered">
 								<div class="control">
 									<input type="text" class="input" placeholder="Search..." name="query">
 								</div>
@@ -39,8 +39,9 @@
 						</form>
 					</div>
 				</div>
+				
 				<div class="navbar-end">
-					{% for category in menu_categories %}
+					{% comment %} {% for category in menu_categories %}
 						{% if not category.children.all %}
                         	<a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
 						{% else %}
@@ -54,7 +55,17 @@
 								</div>
 							</div>
 						{% endif %}		
-					{% endfor %}
+					{% endfor %} {% endcomment %}
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="#" class="navbar-link">{% trans 'Categories' %}</a>
+						<div class="navbar-dropdown">
+						  <div class="category-table">
+							{% for category in menu_categories %}
+							  <a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
+							{% endfor %}
+						  </div>
+						</div>
+					  </div>
 					
 					<div class="navbar-item">
 						{% if request.user.is_authenticated %}
@@ -76,14 +87,59 @@
 							</div>
 						</div>
 					{% endif %}
+					
+					{% comment %} 第一种语言下拉框 {% endcomment %}
+					{% comment %} <div class="navbar-item">
+						<div class="dropdown-trigger">
+							<form class="button" action="{% url 'set_language' %}" method="post">
+								{% csrf_token %}
+				
+								
+									<select name="language" onchange="this.form.submit()">
+										{% get_current_language as LANGUAGE_CODE %}
+										{% get_available_languages as LANGUAGES %}
+										{% get_language_info_list for LANGUAGES as languages %}
+										{% for language in languages %}
+				
+											<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+												{{ language.name_local }}
+											</option>
+										{% endfor %}
+									</select>
+								
+							</form>
+						</div>
+					</div> {% endcomment %}
 
+					{% comment %} 第二种语言下拉框 {% endcomment %}
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="#" class="navbar-link">Language</a>
+						<div class="navbar-dropdown">
+						  <form class="navbar-item" action="{% url 'set_language' %}" method="post">
+							{% csrf_token %}
+							<div class="select">
+							  <select name="language" onchange="this.form.submit()">
+								{% get_current_language as LANGUAGE_CODE %}
+								{% get_available_languages as LANGUAGES %}
+								{% get_language_info_list for LANGUAGES as languages %}
+								{% for language in languages %}
+								  <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+									{{ language.name_local }}
+								  </option>
+								{% endfor %}
+							  </select>
+							</div>
+						  </form>
+						</div>
+					  </div>
+						
 					
 				</div>
 			</div>
 		</nav>
-		<nav class="navbar navbar-expand-md fixed-top navbar-light box-shadow bg-white">
+		{% comment %} <nav class="navbar navbar-expand-md fixed-top navbar-light box-shadow bg-white">
 			<div class="container">
-				<form class="form-inline ml-3-md" action="{% url 'set_language' %}" method="post">
+				<form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post">
 					{% csrf_token %}
 		
 					<div class="input-group">
@@ -106,7 +162,7 @@
 					</div>
 				</form>
 			</div>
-		</nav>
+		</nav> {% endcomment %}
 
 		<section class="section">
 			{% block content %}

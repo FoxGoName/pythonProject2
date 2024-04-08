@@ -3,10 +3,39 @@
 {% block title %}{{ product.title }} | {% endblock %}
 
 {% block content %}
-
-<div id="productapp">
-    <img src="{{ product.image.url }}" alt="test" width="200" height="300">
-    <h1>Product Name: {{ product.title }}</h1>
+<head>
+<style>
+.left {
+  border: 5px;
+  width: 30%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  background-color: white;
+  margin: 20px;
+}
+.right {
+  width: 60%;
+  float: left;
+  background-color: white;
+  margin: 10px;
+}
+.container {
+  width: 90%;
+  height: 50%;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px 5px #d6d6d4;
+}
+body {
+  background-color: #f2efda;
+}
+</style>
+</head>
+<div id="productapp" class="container">
+    <div class="left"><img src="{{ product.image.url }}" alt="test" width="200" height="300" float="center"></div>
+    <div class="right">
+    <h1 style="font-size: 3rem">Product Name: {{ product.title }}</h1>
     <h1>Product Price: {{ product.price }}</h1>
     <h1>Product Category: {{ product.category }}</h1>
     {% if product.description%}
@@ -14,10 +43,11 @@
     {% endif %}
 
     {% if request.user.is_authenticated %}
-        <button @click="addToCart({{ product.id }})">Add to cart</button>
+        <button @click="addToCart({{ product.id }})" class="button is-success" onclick="alert('The product has been added to the shopping cart successfully.')">Add to cart</button>
     {% else %}
-        <a href="{% url 'login' %}" class="button is-light">Add to cart</a>
+        <a href="{% url 'login' %}" class="button is-link is-light" type="button">Add to cart</a>
     {% endif %}
+    </div>
 </div>
 {% endblock %}
 
