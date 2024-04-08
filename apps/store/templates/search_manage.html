@@ -15,7 +15,7 @@
     <p>Showing all results:</p>
 {% endif %} -->
 
-<form method="get" action="{% url 'searchManage' %}">
+{% comment %} <form method="get" action="{% url 'searchManage' %}">
     <div class="field has-addons">
          <div class="control">
             <input type="text" class="input" placeholder="Search..." name="query">
@@ -24,7 +24,7 @@
             <button class="button is-success">Search</button>
         </div>
     </div>
-</form>
+</form> {% endcomment %}
 
 {% if results %}
     <ul>

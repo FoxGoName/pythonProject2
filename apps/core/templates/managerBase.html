@@ -1,4 +1,5 @@
 <!-DOCTYPE html>
+{% load i18n %}
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -10,23 +11,74 @@
 	<body>
 		<nav class="navbar is-dark">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="{% url 'productManager' %}">Shop</a>
-				<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
+				<a class="navbar-item" href="{% url 'productManager' %}">{% trans 'E-shop' %}</a>
+
+				<a @click="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
 				</a>
 			</div>
 
-			<div id="main-navbar" class="navbar-menu" >
+			<div id="main-navbar" class="navbar-menu" :class="{ 'is-active': menuClass }">
 
+				<div class="navbar-start">
+					<div class="navbar-item is-expanded" style="margin-top: 0.8rem;">
+						<form method="get" action="{% url 'searchManage' %}">
+							<div class="field has-addons">
+								<div class="control">
+									<input type="text" class="input" placeholder="Search..." name="query">
+								</div>
+								<div class="control">
+									<button class="button is-success">Search</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				
 				<div class="navbar-end">
+				{% comment %} <div class="navbar-end">
 
 					{% for category in menu_categories %}
 					    <a href="{% url 'manager_category' category.slug %}" class="navbar-item">{{ category.title }}</a>
 					{% endfor %}
 
+				</div> {% endcomment %}
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="#" class="navbar-link">{% trans 'Categories' %}</a>
+						<div class="navbar-dropdown">
+					  		<div class="category-table">
+								{% for category in menu_categories %}
+						  			<a href="{% url 'manager_category' category.slug %}" class="navbar-item">{{ category.title }}</a>
+								{% endfor %}
+					  		</div>
+						</div>
+					</div>
+				
+
+					<div class="navbar-item has-dropdown is-hoverable">
+						<a href="#" class="navbar-link">Language</a>
+						<div class="navbar-dropdown">
+					  		<form class="navbar-item" action="{% url 'set_language' %}" method="post">
+								{% csrf_token %}
+								<div class="select">
+									<select name="language" onchange="this.form.submit()">
+										{% get_current_language as LANGUAGE_CODE %}
+										{% get_available_languages as LANGUAGES %}
+										{% get_language_info_list for LANGUAGES as languages %}
+										{% for language in languages %}
+							  				<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+												{{ language.name_local }}
+							  				</option>
+										{% endfor %}
+						  			</select>
+								</div>
+					  		</form>
+						</div>
+					</div>
 				</div>
+
 			</div>
 
         </nav>
