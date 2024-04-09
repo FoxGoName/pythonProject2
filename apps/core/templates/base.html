@@ -6,20 +6,30 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{% block title %}{% endblock %}E-shop</title>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.0/css/bulma.min.css">
 		<link rel="stylesheet" href="{% static 'main.css' %}">
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-pageloader@0.9.0/css/bulma-pageloader.min.css">
+		<style>
+			.navbar{
+			background-color: #F99A52
+			}
+			body{
+			background-color: #f2efda
+			}
+
+
+		</style>
 	</head>
 
 	<body>
-		<div>
+		{% comment %} <div>
 			<button id="small-font">小</button>
 			<button id="medium-font">中</button>
 			<button id="large-font">大</button>
-		</div>
-		<div id="content" style="font-size: 16px;">
-		<nav class="navbar is-dark" id="navbarapp">
+		</div> {% endcomment %}
+	 <div id="content" style="font-size: 16px;">
+		<nav class="navbar" id="navbarapp">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="{% url 'frontpage' %}">{% trans 'E-shop' %}</a>
 
@@ -30,7 +40,7 @@
 				</a>
 			</div>
 
-			<div id="main-navbar" class="navbar-menu" :class="{ 'is-active': menuClass }">
+			<div id="main-navbar" role="navigation" aria-label="main navigation" class="navbar-menu" :class="{ 'is-active': menuClass }">
 				<div class="navbar-start">
 					<div class="navbar-item is-expanded" style="margin-top: 0.8rem;">
 						<form method="get" action="{% url 'search' %}" class="is-flex is-justify-content-center">
@@ -118,7 +128,7 @@
 					</div> {% endcomment %}
 
 					{% comment %} 第二种语言下拉框 {% endcomment %}
-					<div class="navbar-item has-dropdown is-hoverable">
+					{% comment %} <div class="navbar-item has-dropdown is-hoverable">
 						<a href="#" class="navbar-link">Language</a>
 						<div class="navbar-dropdown">
 						  <form class="navbar-item" action="{% url 'set_language' %}" method="post">
@@ -137,43 +147,76 @@
 							</div>
 						  </form>
 						</div>
-					  </div>
-						
-					
+					  </div> {% endcomment %}
+											
 				</div>
 			</div>
 		</nav>
-		{% comment %} <nav class="navbar navbar-expand-md fixed-top navbar-light box-shadow bg-white">
-			<div class="container">
-				<form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post">
-					{% csrf_token %}
-		
-					<div class="input-group">
-						<select name="language" class="form-control">
-							{% get_current_language as LANGUAGE_CODE %}
-							{% get_available_languages as LANGUAGES %}
-							{% get_language_info_list for LANGUAGES as languages %}
-							{% for language in languages %}
-		
-								<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-									{{ language.name_local }}
-								</option>
-							{% endfor %}
-						</select>
-						<div class="input-group-append">
-							<button type="submit" class="btn btn-inline btn-sm bg-success">
-								{% trans "Select" %}
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</nav> {% endcomment %}
 
+		{% comment %} <div style="justify-content: center; text-align: left; margin-right: 10px;">
+			<span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span>
+			<button id="small-font">小</button>
+			<button id="medium-font">中</button>
+			<button id="large-font">大</button>
+		</div>
+
+		<div style="justify-content: center; text-align: right; margin-right: 10px;">
+			<span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose your language:</span>
+			<form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post" style="float: right;">
+			  {% csrf_token %}
+			  <div class="select">
+				<select name="language" onchange="this.form.submit()">
+				  {% get_current_language as LANGUAGE_CODE %}
+				  {% get_available_languages as LANGUAGES %}
+				  {% get_language_info_list for LANGUAGES as languages %}
+				  {% for language in languages %}
+					<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+					  {{ language.name_local }}
+					</option>
+				  {% endfor %}
+				</select>
+			  </div>
+			</form>
+		</div> {% endcomment %}
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-right: 10px;">
+			<div style="text-align: left;">
+			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span>
+			  <button id="small-font" style="vertical-align: middle; line-height: 40px;">小</button>
+			  <button id="medium-font" style="vertical-align: middle; line-height: 40px;">中</button>
+			  <button id="large-font" style="vertical-align: middle; line-height: 40px;">大</button>
+			</div>
+		  
+			<div style="text-align: right;">
+			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose your language:</span>
+			  <form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post" style="float: right;">
+				{% csrf_token %}
+				<div class="select">
+				  <select name="language" onchange="this.form.submit()">
+					{% get_current_language as LANGUAGE_CODE %}
+					{% get_available_languages as LANGUAGES %}
+					{% get_language_info_list for LANGUAGES as languages %}
+					{% for language in languages %}
+					  <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
+						{{ language.name_local }}
+					  </option>
+					{% endfor %}
+				  </select>
+				</div>
+			  </form>
+			</div>
+		  </div>
+
+	 </div>
+	 
+
+		
+		
+		
 		<section class="section">
 			{% block content %}
             {% endblock %}
 		</section>
+		
 
 		{% if products.has_other_pages %}
     	<nav class="pagination is-centered" role="navigation" aria-label="pagination">
