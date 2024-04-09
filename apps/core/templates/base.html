@@ -13,6 +13,12 @@
 	</head>
 
 	<body>
+		<div>
+			<button id="small-font">小</button>
+			<button id="medium-font">中</button>
+			<button id="large-font">大</button>
+		</div>
+		<div id="content" style="font-size: 16px;">
 		<nav class="navbar is-dark" id="navbarapp">
 			<div class="navbar-brand">
 				<a class="navbar-item" href="{% url 'frontpage' %}">{% trans 'E-shop' %}</a>
@@ -260,7 +266,45 @@
 			});
 		</script>
 
+<!-- <script>
+    document.getElementById('small-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '10px';
+    });
+    
+    document.getElementById('medium-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '16px';
+    });
+    
+    document.getElementById('large-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '22px';
+    });
+</script> -->
+<script>
+    // 检查本地存储中是否有字体大小设置
+    var fontSize = localStorage.getItem('fontSize');
+    if (fontSize) {
+        document.getElementById('content').style.fontSize = fontSize;
+    }
+
+    document.getElementById('small-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '10px';
+        // 将选择的字体大小保存到本地存储
+        localStorage.setItem('fontSize', '10px');
+    });
+
+    document.getElementById('medium-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '16px';
+        localStorage.setItem('fontSize', '16px');
+    });
+
+    document.getElementById('large-font').addEventListener('click', function() {
+        document.getElementById('content').style.fontSize = '22px';
+        localStorage.setItem('fontSize', '22px');
+    });
+</script>
+
 		{% block scripts %}
 		{% endblock %}
+	</div>
 	</body>
 </html>
