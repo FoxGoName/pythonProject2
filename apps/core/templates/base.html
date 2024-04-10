@@ -23,11 +23,6 @@
 	</head>
 
 	<body>
-		{% comment %} <div>
-			<button id="small-font">小</button>
-			<button id="medium-font">中</button>
-			<button id="large-font">大</button>
-		</div> {% endcomment %}
 	 <div id="content" style="font-size: 16px;">
 		<nav class="navbar" id="navbarapp">
 			<div class="navbar-brand">
@@ -57,21 +52,6 @@
 				</div>
 				
 				<div class="navbar-end">
-					{% comment %} {% for category in menu_categories %}
-						{% if not category.children.all %}
-                        	<a href="{% url 'category_detail' category.slug %}" class="navbar-item">{{ category.title }}</a>
-						{% else %}
-							<div class="navbar-item has-dropdown is-hoverable">
-								<a href="{% url 'category_detail' category.slug %}" class="navbar-link">{{ category.title }}</a>
-							
-								<div class="navbar-dropdown">
-									{% for subcategory in category.children.all %}
-										<a href="{% url 'category_detail' subcategory.slug %}" class="navbar-item">{{ subcategory.title }}</a>
-									{% endfor %}
-								</div>
-							</div>
-						{% endif %}		
-					{% endfor %} {% endcomment %}
 					<div class="navbar-item has-dropdown is-hoverable">
 						<a href="#" class="navbar-link">{% trans 'Categories' %}</a>
 						<div class="navbar-dropdown">
@@ -103,88 +83,36 @@
 							</div>
 						</div>
 					{% endif %}
-					
-					{% comment %} 第一种语言下拉框 {% endcomment %}
-					{% comment %} <div class="navbar-item">
-						<div class="dropdown-trigger">
-							<form class="button" action="{% url 'set_language' %}" method="post">
-								{% csrf_token %}
-				
-								
-									<select name="language" onchange="this.form.submit()">
-										{% get_current_language as LANGUAGE_CODE %}
-										{% get_available_languages as LANGUAGES %}
-										{% get_language_info_list for LANGUAGES as languages %}
-										{% for language in languages %}
-				
-											<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-												{{ language.name_local }}
-											</option>
-										{% endfor %}
-									</select>
-								
-							</form>
-						</div>
-					</div> {% endcomment %}
-
-					{% comment %} 第二种语言下拉框 {% endcomment %}
-					{% comment %} <div class="navbar-item has-dropdown is-hoverable">
-						<a href="#" class="navbar-link">Language</a>
-						<div class="navbar-dropdown">
-						  <form class="navbar-item" action="{% url 'set_language' %}" method="post">
-							{% csrf_token %}
-							<div class="select">
-							  <select name="language" onchange="this.form.submit()">
-								{% get_current_language as LANGUAGE_CODE %}
-								{% get_available_languages as LANGUAGES %}
-								{% get_language_info_list for LANGUAGES as languages %}
-								{% for language in languages %}
-								  <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-									{{ language.name_local }}
-								  </option>
-								{% endfor %}
-							  </select>
-							</div>
-						  </form>
-						</div>
-					  </div> {% endcomment %}
 											
 				</div>
 			</div>
 		</nav>
 
-		{% comment %} <div style="justify-content: center; text-align: left; margin-right: 10px;">
-			<span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span>
-			<button id="small-font">小</button>
-			<button id="medium-font">中</button>
-			<button id="large-font">大</button>
-		</div>
-
-		<div style="justify-content: center; text-align: right; margin-right: 10px;">
-			<span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose your language:</span>
-			<form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post" style="float: right;">
-			  {% csrf_token %}
-			  <div class="select">
-				<select name="language" onchange="this.form.submit()">
-				  {% get_current_language as LANGUAGE_CODE %}
-				  {% get_available_languages as LANGUAGES %}
-				  {% get_language_info_list for LANGUAGES as languages %}
-				  {% for language in languages %}
-					<option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected {% endif %}>
-					  {{ language.name_local }}
-					</option>
-				  {% endfor %}
-				</select>
-			  </div>
-			</form>
-		</div> {% endcomment %}
-		<div style="display: flex; justify-content: space-between; align-items: center; margin-right: 10px;">
+		<div style="display: flex; justify-content: space-between; align-items: center; margin-right: 10px; margin-left: 10px;">
 			<div style="text-align: left;">
 			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span>
 			  <button id="small-font" style="vertical-align: middle; line-height: 40px;">小</button>
 			  <button id="medium-font" style="vertical-align: middle; line-height: 40px;">中</button>
 			  <button id="large-font" style="vertical-align: middle; line-height: 40px;">大</button>
+			  {% comment %} <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span> {% endcomment %}
+			  <select id="font-select" style="vertical-align: middle; line-height: 40px;">
+				<option value="10px">10px</option>
+				<option value="12px">12px</option>
+				<option value="14px">14px</option>
+				<option value="16px">16px</option>
+				<option value="18px">18px</option>
+				<option value="20px">20px</option>
+				<option value="22px">22px</option>
+				<option value="24px">24px</option>
+				<option value="26px">26px</option>
+				<option value="28px">28px</option>
+				<option value="30px">30px</option>
+				<option value="custom">Custom</option>
+			  </select>
+			  <input type="text" id="custom-font-size" style="display: none; width: auto; margin-left: 10px; vertical-align: middle; line-height: 20px;" placeholder="Custom size (px)">
+			  <button id="apply-font-size" style="vertical-align: middle; line-height: 20px;" class="button is-info is-light">Apply</button>
 			</div>
+			
 		  
 			<div style="text-align: right;">
 			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose your language:</span>
@@ -204,14 +132,9 @@
 				</div>
 			  </form>
 			</div>
-		  </div>
+		</div>
 
-	 </div>
-	 
-
-		
-		
-		
+	 {% comment %} </div> {% endcomment %}
 		<section class="section">
 			{% block content %}
             {% endblock %}
@@ -252,9 +175,6 @@
     	</nav>
 		{% endif %}
 
-		{% comment %} {% include 'parts/newsletter.html' %} {% endcomment %}
-
-
 		<footer class="footer">
 			<div class="columns">
 				<div class="column is-4">
@@ -267,6 +187,7 @@
 				</div>
 			</div>
 		</footer>
+	 </div>
 
 		<script src="https://unpkg.com/vuex@3.5.1/dist/vuex.js"></script>
 		<script>
@@ -309,45 +230,72 @@
 			});
 		</script>
 
-<!-- <script>
-    document.getElementById('small-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '10px';
-    });
-    
-    document.getElementById('medium-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '16px';
-    });
-    
-    document.getElementById('large-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '22px';
-    });
-</script> -->
-<script>
-    // 检查本地存储中是否有字体大小设置
-    var fontSize = localStorage.getItem('fontSize');
-    if (fontSize) {
-        document.getElementById('content').style.fontSize = fontSize;
-    }
 
-    document.getElementById('small-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '10px';
-        // 将选择的字体大小保存到本地存储
-        localStorage.setItem('fontSize', '10px');
-    });
+		<script>
+    		// 检查本地存储中是否有字体大小设置
+    		var fontSize = localStorage.getItem('fontSize');
+    		if (fontSize) {
+        		document.getElementById('content').style.fontSize = fontSize;
+    		}
 
-    document.getElementById('medium-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '16px';
-        localStorage.setItem('fontSize', '16px');
-    });
+			document.getElementById('small-font').addEventListener('click', function() {
+				document.getElementById('content').style.fontSize = '10px';
+				// 将选择的字体大小保存到本地存储
+				localStorage.setItem('fontSize', '10px');
+			});
+		
+			document.getElementById('medium-font').addEventListener('click', function() {
+				document.getElementById('content').style.fontSize = '16px';
+				localStorage.setItem('fontSize', '16px');
+			});
+		
+			document.getElementById('large-font').addEventListener('click', function() {
+				document.getElementById('content').style.fontSize = '22px';
+				localStorage.setItem('fontSize', '22px');
+			});
 
-    document.getElementById('large-font').addEventListener('click', function() {
-        document.getElementById('content').style.fontSize = '22px';
-        localStorage.setItem('fontSize', '22px');
-    });
-</script>
+    		document.getElementById('font-select').addEventListener('change', function() {
+				var selectedValue = this.value;
+				if (selectedValue === 'custom') {
+					document.getElementById('custom-font-size').style.display = 'inline-block';
+					document.getElementById('apply-font-size').style.display = 'inline-block'; // 显示"Apply"按钮
+				} else {
+					document.getElementById('custom-font-size').style.display = 'none';
+					document.getElementById('apply-font-size').style.display = 'none'; // 隐藏"Apply"按钮
+					document.getElementById('content').style.fontSize = selectedValue;
+					// 将选择的字体大小保存到本地存储
+					localStorage.setItem('fontSize', selectedValue);
+				}
+			});
+
+			document.getElementById('apply-font-size').addEventListener('click', function() {
+				var customFontSize = document.getElementById('custom-font-size').value;
+				if (customFontSize) {
+					document.getElementById('content').style.fontSize = customFontSize;
+					// 将选择的字体大小保存到本地存储
+					localStorage.setItem('fontSize', customFontSize);
+				}
+			});
+
+			window.addEventListener('DOMContentLoaded', function() {
+				var fontSize = localStorage.getItem('fontSize');
+				if (fontSize) {
+				  document.getElementById('content').style.fontSize = fontSize;
+				  if (fontSize === 'custom') {
+					document.getElementById('apply-font-size').style.display = 'none';
+					document.getElementById('font-select').value = 'custom'; // 设置字体大小选择框的选中值为'custom'
+					document.getElementById('custom-font-size').style.display = 'inline-block';
+				  } else {
+					document.getElementById('apply-font-size').style.display = 'none';
+					document.getElementById('font-select').value = fontSize; // 设置字体大小选择框的选中值为之前保存的大小
+					document.getElementById('custom-font-size').style.display = 'none';
+				  }
+				}
+			  });
+		</script>
 
 		{% block scripts %}
 		{% endblock %}
-	</div>
+	
 	</body>
 </html>
