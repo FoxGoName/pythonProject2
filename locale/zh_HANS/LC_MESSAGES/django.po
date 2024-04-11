@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-11 16:12+0800\n"
+"POT-Creation-Date: 2024-04-11 16:31+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -129,8 +129,14 @@ msgstr "下一页"
 msgid "Last"
 msgstr "尾页"
 
-#: .\apps\core\templates\base.html:189
+#: .\apps\core\templates\base.html:189 .\apps\core\templates\contact.html:6
 msgid "Contact"
+msgstr "联系我们"
+
+#: .\apps\core\templates\contact.html:8 .\apps\core\templates\contact.html:9
+#, fuzzy
+#| msgid "Contact"
+msgid "Contact us by"
 msgstr "联系我们"
 
 #: .\apps\store\models.py:10 .\apps\store\models.py:28
@@ -241,3 +247,13 @@ msgstr "电话号码："
 #: .\apps\userprofile\templates\myaccount.html:24
 msgid "My orders"
 msgstr "我的订单"
+
+#, fuzzy
+#~| msgid "Contact"
+#~ msgid "Contact us"
+#~ msgstr "联系我们"
+
+#, fuzzy
+#~| msgid "Account information"
+#~ msgid "Contact information"
+#~ msgstr "账户信息"

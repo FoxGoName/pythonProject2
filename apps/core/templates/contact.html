@@ -1,9 +1,11 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Contact | {% endblock %}
 
 {% block content %}
-    <h1 class="title">Contact</h1>
+    <h1 class="title" data-translate="{% trans 'Contact' %}">{% trans 'Contact' %}</h1>
 
-    Contact form, information, etc
+    <p data-translate="{% trans 'Contact us by' %}">
+        {% trans 'Contact us by' %} ...
+    </p>
 {% endblock %}
