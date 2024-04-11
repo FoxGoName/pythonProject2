@@ -1,7 +1,7 @@
 {% extends 'managerBase.html' %}
 {% block content %}
-             <a href="{% url 'order_list' %}">Orders</a><br>
-             <a href="{% url 'addProduct' %}" class="edit-button">Add product</a>
+             <a href="{% url 'order_list' %}" class="button is-hovered">Orders</a>
+             <a href="{% url 'addProduct' %}" class="button is-info is-hovered">Add product</a>
              <!-- <div class="product-list">
                  {% for product in products %}
                  <div class="product">
@@ -25,30 +25,34 @@
 							</div>
 						</form>
              </div> {% endcomment %}
-         <div class = "columns is-multiline" >
+         <div class = "columns is-multiline" style="margin-top: 0.8rem;">
             {% for product in products %}
                 <div class="column is-3">
-                   <div class="card">
+                   <div class="card" style="border: 1px solid black;">
                       <div class="card-content">
                            <div class="media">
                               <div class="media-content">
-                                  <img src="{{ product.image.url }}" alt="test" width="200" height="300">
+                                  <img src="{{ product.image.url }}" style="width: 300px; height: 200px">
                                  <p class="title is-4">{{ product.title }}</p>
-                                  <p class="title is-4">id: {{ product.id }}</p>
-                                 <p class="is-6">price:{{ product.price }}</p>
-                                  <p class="is-6">category:{{ product.category }}</p>
-                                  <p class="is-6">description:{{ product.description }}</p>
+                                  <p class="title is-4">Id: {{ product.id }}</p>
+                                 <p class="is-6">Price:{{ product.price }}</p>
+                                  <p class="is-6">Category:{{ product.category }}</p>
+                                  <p class="is-6">Description:{{ product.description }}</p>
                               </div>
                            </div>
                       </div>
-                             <footer class="card-footer">
+                             <footer class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
                                 {% if product.is_disabled %}
-                                    <a href="{% url 'enableProduct' product.pk %}" class="disable-button">Enable</a>
+                                    <a href="{% url 'enableProduct' product.pk %}" class="button is-primary is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;">Enable</a>
                                 {% else %}
-                                    <a href="{% url 'disableProduct' product.pk %}" class="disable-button">Disable</a>
+                                    <a href="{% url 'disableProduct' product.pk %}" class="button is-danger is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;">Disable</a>
                                 {% endif %}
-                                 &nbsp<a href="{% url 'editProduct' product.pk %}" class="edit-button">Edit</a>&nbsp
-                                 <a href="{% url 'deleteProduct' product.pk %}" class="edit-button">Delete</a>
+                                 {% comment %} &nbsp<a href="{% url 'editProduct' product.pk %}" class="button is-info is-outlined">Edit</a>&nbsp
+                                 <a href="{% url 'deleteProduct' product.pk %}" class="button is-danger is-outlined">Delete</a> {% endcomment %}
+                                 <div>
+                                    <a href="{% url 'editProduct' product.pk %}" class="button is-info is-outlined" style="margin-top: 5px; margin-bottom: 5px;">Edit</a>
+                                    <a href="{% url 'deleteProduct' product.pk %}" class="button is-danger is-outlined" style="margin-right: 10px; margin-top: 5px; margin-bottom: 5px;">Delete</a>
+                                 </div>
                              </footer>
                    </div>
                 </div>
