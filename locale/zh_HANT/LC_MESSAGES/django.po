@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-05 10:54+0800\n"
+"POT-Creation-Date: 2024-04-11 12:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,60 +17,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\apps\core\templates\base.html:18 .\apps\core\templates\base.html:157
-msgid "E-shop"
-msgstr "網上商店"
-
-#: .\apps\core\templates\base.html:36
-msgid "Search"
-msgstr "搜尋"
-
-#: .\apps\core\templates\base.html:61 .\apps\core\templates\base.html:63
+#: .\apps\cart\templates\cart.html:7 .\apps\core\templates\base.html:71
+#: .\apps\core\templates\base.html:73
 msgid "Cart"
 msgstr "購物車"
 
-#: .\apps\core\templates\base.html:69
+#: .\apps\cart\templates\cart.html:17
+msgid "Product"
+msgstr "商品"
+
+#: .\apps\cart\templates\cart.html:18
+msgid "Quantity"
+msgstr "數量"
+
+#: .\apps\cart\templates\cart.html:19 .\apps\store\models.py:31
+msgid "Price"
+msgstr "價格"
+
+#: .\apps\cart\templates\cart.html:38
+msgid "Remove"
+msgstr "刪除"
+
+#: .\apps\cart\templates\cart.html:44
+msgid "Total cost"
+msgstr "合計"
+
+#: .\apps\cart\templates\cart.html:56
+#, fuzzy
+#| msgid "Log in"
+msgid "log in"
+msgstr "登入"
+
+#: .\apps\cart\templates\cart.html:56
+#, fuzzy
+#| msgid "Sign up"
+msgid "sign up"
+msgstr "註冊"
+
+#: .\apps\cart\templates\cart.html:137 .\apps\cart\templates\cart.html:206
+msgid "Your cart is empty!"
+msgstr "您的購物車還沒有商品!"
+
+#: .\apps\cart\templates\cart.html:201
+msgid "Check out"
+msgstr "結算"
+
+#: .\apps\core\templates\base.html:32 .\apps\core\templates\base.html:186
+#: .\apps\core\templates\managerBase.html:14
+msgid "E-shop"
+msgstr "網上商店"
+
+#: .\apps\core\templates\base.html:50
+msgid "Search"
+msgstr "搜尋"
+
+#: .\apps\core\templates\base.html:59
+#: .\apps\core\templates\managerBase.html:50 .\apps\store\models.py:16
+msgid "Categories"
+msgstr "分類"
+
+#: .\apps\core\templates\base.html:79
 #: .\apps\userprofile\templates\myaccount.html:4
 msgid "My account"
 msgstr "我的帳戶"
 
-#: .\apps\core\templates\base.html:74
+#: .\apps\core\templates\base.html:84
 #: .\apps\userprofile\templates\signup.html:6
 #: .\apps\userprofile\templates\signup.html:17
 msgid "Sign up"
 msgstr "註冊"
 
-#: .\apps\core\templates\base.html:75
+#: .\apps\core\templates\base.html:85
 #: .\apps\userprofile\templates\login.html:6
 #: .\apps\userprofile\templates\login.html:39
 msgid "Log in"
 msgstr "登入"
 
-#: .\apps\core\templates\base.html:103
-msgid "Select"
-msgstr "選擇"
+#: .\apps\core\templates\base.html:96
+msgid "Please choose the font size"
+msgstr "請選擇字體大小"
 
-#: .\apps\core\templates\base.html:119 .\apps\core\templates\base.html:122
+#: .\apps\core\templates\base.html:117
+msgid "Apply"
+msgstr "應用"
+
+#: .\apps\core\templates\base.html:122
+msgid "Please choose your language"
+msgstr "請選擇語言"
+
+#: .\apps\core\templates\base.html:152 .\apps\core\templates\base.html:155
 msgid "First"
 msgstr "首頁"
 
-#: .\apps\core\templates\base.html:120 .\apps\core\templates\base.html:123
+#: .\apps\core\templates\base.html:153 .\apps\core\templates\base.html:156
 msgid "Previous"
 msgstr "上一頁"
 
-#: .\apps\core\templates\base.html:141 .\apps\core\templates\base.html:144
+#: .\apps\core\templates\base.html:174 .\apps\core\templates\base.html:177
 msgid "Next"
 msgstr "下一頁"
 
-#: .\apps\core\templates\base.html:142 .\apps\core\templates\base.html:145
+#: .\apps\core\templates\base.html:175 .\apps\core\templates\base.html:178
 msgid "Last"
 msgstr "尾頁"
 
-#: .\apps\core\templates\base.html:161
+#: .\apps\core\templates\base.html:190
 msgid "Contact"
 msgstr "聯絡我們"
 
-#: .\apps\core\templates\base.html:162
+#: .\apps\core\templates\base.html:191
 msgid "About"
 msgstr "關於我們"
 
@@ -86,17 +141,9 @@ msgstr "固定連結"
 msgid "Ordering"
 msgstr "訂購"
 
-#: .\apps\store\models.py:16
-msgid "Categories"
-msgstr "分類"
-
 #: .\apps\store\models.py:30
 msgid "Description"
 msgstr "描述"
-
-#: .\apps\store\models.py:31
-msgid "Price"
-msgstr "價格"
 
 #: .\apps\store\models.py:33
 msgid "Number Available"
@@ -189,3 +236,6 @@ msgstr "電話號碼："
 #: .\apps\userprofile\templates\myaccount.html:24
 msgid "My orders"
 msgstr "我的訂單"
+
+#~ msgid "Select"
+#~ msgstr "選擇"

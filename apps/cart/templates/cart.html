@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}Cart | {% endblock %}
 
 {% block content %}
     <div id="cartapp">
-        <h1 class="title">Cart</h1>
+        <h1 class="title" data-translate="{% trans 'Cart' %}">{% trans 'Cart' %}</h1>
 
         {% if cart %}
             <div v-if="products.length > 0">
@@ -12,9 +12,9 @@
                     <table class="table"> {% comment %}本来table后面还有 is-fullwidth is-striped{% endcomment %}
                         <thead>
                             {% comment %} <th></th> {% endcomment %}
-                            <th>Product</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
+                            <th data-translate="{% trans 'Product' %}">{% trans 'Product' %}</th>
+                            <th data-translate="{% trans 'Quantity' %}">{% trans 'Quantity' %}</th>
+                            <th data-translate="{% trans 'Price' %}">{% trans 'Price' %}</th>
                             <th></th>
                         </thead>
 
@@ -32,13 +32,13 @@
                                 </td>
                                 <td><button @click="decrementQuantity(product.id, product.quantity, product.price)">-</button> [[ product.quantity ]] <button @click="incrementQuantity(product.id, product.quantity, product.price)">+</button></td>
                                 <td>[[ product.price ]]</td>
-                                <td><button @click="removeFromCart(product.id)" class="button is-danger">Remove</button></td>
+                                <td><button @click="removeFromCart(product.id)" class="button is-danger" data-translate="{% trans 'Remove' %}">{% trans 'Remove' %}</button></td>
                             </tr>
                         </tbody>
 
                         <tfoot>
                             <tr>
-                                <td>Total cost:</td>
+                                <td data-translate="{% trans 'Total cost' %}">{% trans 'Total cost' %}:</td>
                                 <td>[[ numItems ]]</td>
                                 {% comment %} <td></td> {% endcomment %}
                                 <td>[[ totalCost ]]</td>
@@ -49,7 +49,7 @@
                 </div>
 
                 {% if not request.user.is_authenticated %}
-                    <p>Continue as guest or <a href="{% url 'login' %}">log in</a> / <a href="{% url 'signup' %}">sign up</a>.</p>
+                    <p>Continue as guest or <a href="{% url 'login' %}" data-translate="{% trans 'log in' %}">{% trans 'log in' %}</a> / <a href="{% url 'signup' %}" data-translate="{% trans 'sign up' %}">{% trans 'sign up' %}</a>.</p>
 
                     <hr>
                 {% endif %}
@@ -127,7 +127,8 @@
                     </div>
                 </div> {% endcomment %}
             </div>
-            <p v-else>Your cart is empty!</p>
+            <p v-else data-translate="{% trans 'Your cart is empty!' %}">{% trans 'Your cart is empty!' %}</p> 
+            {% comment %} Your cart is empty! {% endcomment %}
 
             <form v-on:submit.prevent="submitForm()">
                 {% comment %} <div class="field">
@@ -188,12 +189,12 @@
 
                 <div class="field">
                     <div class="control">
-                        <button class="button is-primary">Check out</button>
+                        <button class="button is-primary" data-translate="{% trans 'Check out' %}">{% trans 'Check out' %}</button>
                     </div>
                 </div>
             </form>
         {% else %}
-            <p>Your cart is empty!</p>
+            <p data-translate="{% trans 'Your cart is empty!' %}">{% trans 'Your cart is empty!' %}</p>
         {% endif %}
 
         <div v-if="errors.length > 0">
