@@ -54,139 +54,11 @@
                     <hr>
                 {% endif %}
 
-                {% comment %} <h2 class="title">Contact information</h2> {% endcomment %}
-
-                {% comment %} <div class="columns">
-                    <div class="column is-6">
-                        <div class="field">
-                            <label>First name</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="first_name" v-model="first_name">
-                            </div>
-                        </div>
-    
-                        <div class="field">
-                            <label>Last name</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="last_name" v-model="last_name">
-                            </div>
-                        </div>
-    
-                        <div class="field">
-                            <label>E-mail</label>
-    
-                            <div class="control">
-                                <input class="input" type="email" name="email" v-model="email">
-                            </div>
-                        </div>
-    
-                        <div class="field">
-                            <label>Phone</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="phone" v-model="phone">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="column is-6">
-                        <div class="field">
-                            <label>Address</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="address" v-model="address">
-                            </div>
-                        </div>
-    
-                        <div class="field">
-                            <label>Zip code</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="zipcode" v-model="zipcode">
-                            </div>
-                        </div>
-    
-                        <div class="field">
-                            <label>Place</label>
-    
-                            <div class="control">
-                                <input class="input" type="text" name="place" v-model="place">
-                            </div>
-                        </div>
-                    </div>
-                </div> {% endcomment %}
-                
-                {% comment %} <div class="field">
-                    <div class="control">
-                        <button class="button is-primary" v-on:click="buy('stripe')">Pay with stripe</button>
-                        <button class="button is-primary" v-on:click="buy('razorpay')">Pay with razorpay</button>
-                    
-                        <div id="paypal-button-container" class="mt-4"></div>
-                    </div>
-                </div> {% endcomment %}
             </div>
             <p v-else data-translate="{% trans 'Your cart is empty!' %}">{% trans 'Your cart is empty!' %}</p> 
             {% comment %} Your cart is empty! {% endcomment %}
 
             <form v-on:submit.prevent="submitForm()">
-                {% comment %} <div class="field">
-                    <label>First name</label>
-
-                    <div class="control">
-                        <input type="text" name="first_name" v-model="first_name"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>Last name</label>
-
-                    <div class="control">
-                        <input type="text" name="last_name" v-model="last_name"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>E-mail</label>
-
-                    <div class="control">
-                        <input type="email" name="email" v-model="email"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>Phone</label>
-
-                    <div class="control">
-                        <input type="text" name="phone" v-model="phone"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>Address</label>
-
-                    <div class="control">
-                        <input type="text" name="address" v-model="address"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>Zip code</label>
-
-                    <div class="control">
-                        <input type="text" name="zipcode" v-model="zipcode"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div>
-
-                <div class="field">
-                    <label>Place</label>
-
-                    <div class="control">
-                        <input type="text" name="place" v-model="place"> <!--本来在type前有class="input"的-->
-                    </div>
-                </div> {% endcomment %}
-
                 <div class="field">
                     <div class="control">
                         <button class="button is-primary" data-translate="{% trans 'Check out' %}">{% trans 'Check out' %}</button>
@@ -213,9 +85,7 @@
 {% endblock %}
 
 {% block scripts %}
-{% comment %} <script type="application/javascript" src="https://js.stripe.com/v3/"></script> {% endcomment %}
-{% comment %} <script type="application/javascript" src="https://checkout.razorpay.com/v1/checkout.js"></script> {% endcomment %}
-{% comment %} <script type="application/javascript" src="https://www.paypal.com/sdk/js?client-id={{ pub_key_paypal }}"></script> {% endcomment %}
+
 <script>
     var productapp = new Vue({
         el: '#cartapp',
@@ -236,57 +106,6 @@
         },
         mounted() {
             const amount = this.totalCost.toString();
-
-            /*paypal.Buttons({
-                onClick: () => {
-                    if (this.validateForm() > 0) {
-                        return false;
-                    }
-                },
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: amount
-                            }
-                        }]
-                    })
-                },
-                onApprove: (data, actions) => {
-                    const formdata = {
-                        'first_name': this.first_name,
-                        'last_name': this.last_name,
-                        'email': this.email,
-                        'address': this.address,
-                        'zipcode': this.zipcode,
-                        'place': this.place,
-                        'phone': this.phone,
-                        'gateway': 'paypal',
-                        'order_id': data.orderID
-                    };
-
-                    return actions.order.capture().then(function(details) {
-                        fetch('/api/create_checkout_session/', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': '{{ csrf_token }}'
-                            },
-                            credentials: 'same-origin',
-                            body: JSON.stringify(formdata)
-                        })
-                        .then(function(response) {
-                            return response.json()
-                        })
-                        .then(function(result) {
-                            window.location.href = '/cart/success/';
-                        })
-                        .catch(function(error) {
-                            console.log('error:', error);
-                        });
-                    });
-                }
-            }).render('#paypal-button-container'); */
         },
         computed: {
             numItems: function() {
@@ -298,147 +117,6 @@
             
         },
         methods: {
-            /*validateForm() {
-                this.errors = [];
-
-                if (this.first_name === '') {
-                    this.errors.push('First name is empty');
-                }
-
-                if (this.last_name === '') {
-                    this.errors.push('Last name is empty');
-                }
-
-                if (this.email === '') {
-                    this.errors.push('Email is empty');
-                }
-
-                if (this.address === '') {
-                    this.errors.push('Address is empty');
-                }
-
-                if (this.zipcode === '') {
-                    this.errors.push('Zip code is empty');
-                }
-
-                if (this.place === '') {
-                    this.errors.push('Place is empty');
-                }
-
-                if (this.phone === '') {
-                    this.errors.push('Phone is empty');
-                }
-
-                return this.errors.length;
-            },
-            buy(gateway) {
-                var data = {
-                    'first_name': this.first_name,
-                    'last_name': this.last_name,
-                    'email': this.email,
-                    'address': this.address,
-                    'zipcode': this.zipcode,
-                    'place': this.place,
-                    'phone': this.phone,
-                    'gateway': gateway
-                };
-
-                if (this.validateForm() === 0) {
-                    if (gateway === 'stripe') {
-                        var stripe = Stripe('{{ pub_key }}');
-
-                        fetch('/api/create_checkout_session/', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': '{{ csrf_token }}'
-                            },
-                            credentials: 'same-origin',
-                            body: JSON.stringify(data)
-                        })
-                        .then(function(response) {
-                            return response.json()
-                        })
-                        .then(function(session) {
-                            return stripe.redirectToCheckout({ sessionId: session.session.id })
-                        })
-                        .then(function(result) {
-                            if (result.error) {
-                                alert(result.error.message)
-                            }
-                        })
-                        .catch(function(error) {
-                            console.log('Error:', error);
-                        });
-                    } else if (gateway === 'razorpay') {
-                        fetch('/api/create_checkout_session/', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                                'X-CSRFToken': '{{ csrf_token }}'
-                            },
-                            credentials: 'same-origin',
-                            body: JSON.stringify(data)
-                        })
-                        .then(function(response) {
-                            return response.json()
-                        })
-                        .then(function(result) {
-                            const order_id = result.order.id;
-                            const amount = result.order.amount;
-
-                            var options = {
-                                'key': '{{ pub_key_razorpay }}',
-                                'amount': amount,
-                                'currency': 'INR',
-                                'name': 'E-shop',
-                                'description': 'A cool gadget store',
-                                'order_id': order_id,
-                                'handler': function(res) {
-                                    console.log('Handler');
-                                    
-                                    fetch('/api/validate_payment/', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                            'X-CSRFToken': '{{ csrf_token }}'
-                                        },
-                                        credentials: 'same-origin',
-                                        body: JSON.stringify({
-                                            'razorpay_payment_id': res.razorpay_payment_id,
-                                            'razorpay_order_id': res.razorpay_order_id,
-                                            'razorpay_signature': res.razorpay_signature
-                                        })
-                                    })
-                                    .then(function(response) {
-                                        return response.json();
-                                    })
-                                    .then(function(result) {
-                                        window.location.href = '/cart/success/';
-                                    })
-                                    .catch(function(error) {
-                                        console.log('Error:', error);
-                                    });
-                                },
-                                'prefill': {
-                                    'name': data.first_name + ' ' + data.last_name,
-                                    'email': data.email,
-                                    'contact': data.phone
-                                },
-                                'theme': {
-                                    'color': '#333333'
-                                }
-                            };
-
-                            var rzp = new Razorpay(options);
-                            rzp.open();
-                        })
-                        .catch(function(error) {
-                            console.log('Error', error);
-                        });
-                    }
-                }
-            },*/
             submitForm() {
                 console.log('Submit form');
 
@@ -598,5 +276,7 @@
             }
         }
     });
+
+
 </script>
 {% endblock %}

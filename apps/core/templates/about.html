@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block title %}About | {% endblock %}
 
 {% block content %}
-    <h1 class="title">About</h1>
+    <h1 class="title" data-translate="{% trans 'About' %}">{% trans 'About' %}</h1>
 
-    <p>
-        This is the information about E-shop  ...
+    <p data-translate="{% trans 'This is the information about E-shop' %}">
+        {% trans 'This is the information about E-shop' %}  ...
     </p>
 {% endblock %}

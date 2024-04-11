@@ -19,7 +19,6 @@
 			}
 
 		</style>
-		<script type="module" src="fortawesome.js"></script>
 
 	</head>
 
@@ -229,10 +228,7 @@
 					}
 				}
 			});
-		</script>
-
-
-		<script>
+		
     		// 检查本地存储中是否有字体大小设置
     		var fontSize = localStorage.getItem('fontSize');
     		if (fontSize) {
@@ -301,14 +297,17 @@
 
         		function handleMouseEnter() {
             		if (!speechReported) {
-                		var text = element.getAttribute('data-translate');
-                		var speech = new SpeechSynthesisUtterance(text);
-                		speechSynthesis.speak(speech);
-                		speechReported = true;
+                		timeoutId = setTimeout(function() {
+							var text = element.getAttribute('data-translate');
+							var speech = new SpeechSynthesisUtterance(text);
+							speechSynthesis.speak(speech);
+							speechReported = true;
+						}, 2000); 
             		}
         		}
 
         		function handleMouseLeave() {
+					clearTimeout(timeoutId);
             		speechReported = false;
         		}
 

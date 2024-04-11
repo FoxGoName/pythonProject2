@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-11 12:53+0800\n"
+"POT-Creation-Date: 2024-04-11 16:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\apps\cart\templates\cart.html:7 .\apps\core\templates\base.html:71
-#: .\apps\core\templates\base.html:73
+#: .\apps\cart\templates\cart.html:7 .\apps\core\templates\base.html:70
+#: .\apps\core\templates\base.html:72
 msgid "Cart"
 msgstr "购物车"
 
@@ -54,80 +54,84 @@ msgstr "登录"
 msgid "sign up"
 msgstr "注册"
 
-#: .\apps\cart\templates\cart.html:137 .\apps\cart\templates\cart.html:206
+#: .\apps\cart\templates\cart.html:62 .\apps\cart\templates\cart.html:74
 msgid "Your cart is empty!"
 msgstr "您的购物车还没有商品！"
 
-#: .\apps\cart\templates\cart.html:201
+#: .\apps\cart\templates\cart.html:69
 msgid "Check out"
 msgstr "结算"
 
-#: .\apps\core\templates\base.html:32 .\apps\core\templates\base.html:186
+#: .\apps\core\templates\about.html:6 .\apps\core\templates\base.html:190
+msgid "About"
+msgstr "关于我们"
+
+#: .\apps\core\templates\about.html:8 .\apps\core\templates\about.html:9
+msgid "This is the information about E-shop"
+msgstr "这是关于该网上商店的信息"
+
+#: .\apps\core\templates\base.html:31 .\apps\core\templates\base.html:185
 #: .\apps\core\templates\managerBase.html:14
 msgid "E-shop"
 msgstr "网上商店"
 
-#: .\apps\core\templates\base.html:50
+#: .\apps\core\templates\base.html:49
 msgid "Search"
 msgstr "搜索"
 
-#: .\apps\core\templates\base.html:59
+#: .\apps\core\templates\base.html:58
 #: .\apps\core\templates\managerBase.html:50 .\apps\store\models.py:16
 msgid "Categories"
 msgstr "分类"
 
-#: .\apps\core\templates\base.html:79
+#: .\apps\core\templates\base.html:78
 #: .\apps\userprofile\templates\myaccount.html:4
 msgid "My account"
 msgstr "我的账户"
 
-#: .\apps\core\templates\base.html:84
+#: .\apps\core\templates\base.html:83
 #: .\apps\userprofile\templates\signup.html:6
 #: .\apps\userprofile\templates\signup.html:17
 msgid "Sign up"
 msgstr "注册"
 
-#: .\apps\core\templates\base.html:85
+#: .\apps\core\templates\base.html:84
 #: .\apps\userprofile\templates\login.html:6
 #: .\apps\userprofile\templates\login.html:39
 msgid "Log in"
 msgstr "登录"
 
-#: .\apps\core\templates\base.html:96
+#: .\apps\core\templates\base.html:95
 msgid "Please choose the font size"
 msgstr "请选择字体大小"
 
-#: .\apps\core\templates\base.html:117
+#: .\apps\core\templates\base.html:116
 msgid "Apply"
 msgstr "应用"
 
-#: .\apps\core\templates\base.html:122
+#: .\apps\core\templates\base.html:121
 msgid "Please choose your language"
 msgstr "请选择语言"
 
-#: .\apps\core\templates\base.html:152 .\apps\core\templates\base.html:155
+#: .\apps\core\templates\base.html:151 .\apps\core\templates\base.html:154
 msgid "First"
 msgstr "首页"
 
-#: .\apps\core\templates\base.html:153 .\apps\core\templates\base.html:156
+#: .\apps\core\templates\base.html:152 .\apps\core\templates\base.html:155
 msgid "Previous"
 msgstr "上一页"
 
-#: .\apps\core\templates\base.html:174 .\apps\core\templates\base.html:177
+#: .\apps\core\templates\base.html:173 .\apps\core\templates\base.html:176
 msgid "Next"
 msgstr "下一页"
 
-#: .\apps\core\templates\base.html:175 .\apps\core\templates\base.html:178
+#: .\apps\core\templates\base.html:174 .\apps\core\templates\base.html:177
 msgid "Last"
 msgstr "尾页"
 
-#: .\apps\core\templates\base.html:190
+#: .\apps\core\templates\base.html:189
 msgid "Contact"
 msgstr "联系我们"
-
-#: .\apps\core\templates\base.html:191
-msgid "About"
-msgstr "关于我们"
 
 #: .\apps\store\models.py:10 .\apps\store\models.py:28
 msgid "Title"
@@ -237,6 +241,3 @@ msgstr "电话号码："
 #: .\apps\userprofile\templates\myaccount.html:24
 msgid "My orders"
 msgstr "我的订单"
-
-#~ msgid "Select"
-#~ msgstr "选择"
