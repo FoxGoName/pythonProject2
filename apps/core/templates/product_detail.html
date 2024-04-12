@@ -42,10 +42,23 @@ body {
     <h1>Product Description: {{ product.description }}</h1>
     {% endif %}
 
-    {% if request.user.is_authenticated %}
+    {% comment %} {% if request.user.is_authenticated %}
         <button @click="addToCart({{ product.id }})" class="button is-success" onclick="alert('The product has been added to the shopping cart successfully.')">Add to cart</button>
     {% else %}
         <a href="{% url 'login' %}" class="button is-link is-light" type="button">Add to cart</a>
+    {% endif %} {% endcomment %}
+    {% if request.user.is_authenticated %}  
+        {% if product.in_cart %}  
+    </br><p style="color: blue; font-size: 150%;"><b>Already in cart!</b></p>  
+        {% else %}  
+            {% if product.num_available > 0 %}  
+                <button @click="addToCart({{ product.id }})" class="button is-success" onclick="alert('The product has been added to the shopping cart successfully.')">Add to cart</button>  
+            {% else %}  
+                <p>The product is out of stock!</p>  
+            {% endif %}  
+        {% endif %}  
+    {% else %}  
+        <a href="{% url 'login' %}" class="button is-link is-light" type="button">Login to add to cart</a>  
     {% endif %}
     </div>
 </div>
@@ -88,6 +101,7 @@ body {
                     console.log(response);
 
                     store.commit('increment',1);
+                    location.reload();
                 })
                 .catch(function (error) {
                     console.log('Error 2');
