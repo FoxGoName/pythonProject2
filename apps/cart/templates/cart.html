@@ -30,7 +30,7 @@
                                         [[ product.title ]]
                                     </a>
                                 </td>
-                                <td><button @click="decrementQuantity(product.id, product.quantity, product.price)">-</button> [[ product.quantity ]] <button @click="incrementQuantity(product.id, product.quantity, product.price)">+</button></td>
+                                <td><button @click="decrementQuantity(product.id, product.quantity, product.price)"><i class="fa-regular fa-square-minus"></i></i></button> [[ product.quantity ]] <button @click="incrementQuantity(product.id, product.quantity, product.price)"><i class="fa-regular fa-square-plus"></i></i></button></td>
                                 <td>[[ product.price ]]</td>
                                 <td><button @click="removeFromCart(product.id)" class="button is-danger" data-translate="{% trans 'Remove' %}">{% trans 'Remove' %}</button></td>
                             </tr>
