@@ -1,8 +1,121 @@
 {% extends 'managerBase.html'%}
 {% block content %}
-<h1>New Product</h1>
-<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+<h1 style="font-weight: bold; font-size: 150%;">New Product</h1>
+{% comment %} <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Save">
+</form> {% endcomment %}
+
+<form method="POST" action="" enctype="multipart/form-data" class="bulma-form">
+    {% csrf_token %}
+    <div class="field">
+      <h1 class="label">Category</h1>
+      <div class="control">
+        {{ form.category }}
+      </div>
+      <p class="help">Please select the category of the product.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Title</h1>
+      <div class="control">
+        {{ form.title }}
+      </div>
+      <p class="help">Please enter the product name.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Slug<h1>
+      <div class="control">
+        {{ form.slug }}
+      </div>
+      <p class="help">A slug is a short identifier used to help your products have a unique web address on the website. 
+        It's similar to giving your product a special name, used to create a URL that's easy to remember and share.
+        Suppose there is a product called "banana-chocolate cake". The slug is like a special name for the cake, such as "banana-chocolate-cake".</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Description</h1>
+      <div class="control">
+        {{ form.description }}
+      </div>
+      <p class="help">Please describe your product.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Price</h1>
+      <div class="control">
+        {{ form.price }}
+      </div>
+      <p class="help">Please enter the product price.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Number Available</h1>
+      <div class="control">
+        {{ form.num_available }}
+      </div>
+      <p class="help">Please fill in the product inventory.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Number of Visits</h1>
+      <div class="control">
+        {{ form.num_visits }}
+      </div>
+      <p class="help">This shows how many times the product has been viewed.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Last Visit</h1>
+      <div class="control">
+        {{ form.last_visit }}
+      </div>
+      <p class="help">This shows when the product was last viewed.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Image</h1>
+      <div class="control">
+        {{ form.image }}
+      </div>
+      <p class="help">Please select a product image.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Thumbnail</h1>
+      <div class="control">
+        {{ form.thumbnail }}
+      </div>
+      <p class="help">Please select a product thumbnail.</p>
+    </div>
+  
+    <div class="field">
+      <h1 class="label">Is disabled</h1>
+      <div class="control">
+        {{ form.is_disabled }}
+      </div>
+      <p class="help">Please select whether this product is displayed (default is displayed).</p>
+    </div>
+  
+    <div class="field is-grouped">
+      <div class="control">
+        <input type="submit" value="Save" class="button is-light is-hovered">
+      </div>
+    </div>
 </form>
+
+<style>
+    .label {
+        font-weight: bold;
+      }
+
+    .help {
+      font-size: 80%;
+      color: #6495ED;
+    }
+
+
+</style>
+
 {% endblock%}
