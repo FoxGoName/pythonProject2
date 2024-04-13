@@ -40,8 +40,17 @@ def frontpage(request):
     return render(request, 'frontpage.html', context)
 
 def productManagePage(request):
+    all_products = Product.objects.all()
+    paginator = Paginator(all_products, 8)  # Limiting 8 products per page
+    page = request.GET.get('page')
 
-    products = Product.objects.all()
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
+
     context = {
         'products': products
     }
