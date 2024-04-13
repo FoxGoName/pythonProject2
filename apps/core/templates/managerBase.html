@@ -20,7 +20,7 @@
 	 <div id="content" style="font-size: 16px;">
 		<nav class="navbar is-light">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="{% url 'productManager' %}">{% trans 'E-shop' %}</a>
+				<a class="navbar-item" href="{% url 'productManager' %}" data-translate="{% trans 'E-shop' %}">{% trans 'E-shop' %}</a>
 
 				<a @click="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
 					<span aria-hidden="true"></span>
@@ -39,7 +39,7 @@
 									<input type="text" class="input" placeholder="Search..." name="query">
 								</div>
 								<div class="control">
-									<button class="button is-success">Search</button>
+									<button class="button is-success" data-translate="{% trans 'Search' %}">{% trans 'Search' %}</button>
 								</div>
 							</div>
 						</form>
@@ -55,7 +55,7 @@
 
 				</div> {% endcomment %}
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a href="#" class="navbar-link">{% trans 'Categories' %}</a>
+						<a href="#" class="navbar-link" data-translate="{% trans 'Categories' %}">{% trans 'Categories' %}</a>
 						<div class="navbar-dropdown">
 					  		<div class="category-table">
 								{% for category in menu_categories %}
@@ -121,19 +121,54 @@
             {% endblock %}
 		</section>
 
+		{% if products.has_other_pages %}
+    	<nav class="pagination is-centered" role="navigation" aria-label="pagination">
+        	{% if products.has_previous %}
+            	<a href="?page=1" class="pagination-previous" data-translate="{% trans 'First' %}">{% trans 'First' %}</a>
+            	<a href="?page={{ products.previous_page_number }}" class="pagination-previous" data-translate="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+        	{% else %}
+            	<a class="pagination-previous" disabled data-translate="{% trans 'First' %}">{% trans 'First' %}</a>
+            	<a class="pagination-previous" disabled data-translate="{% trans 'Previous' %}">{% trans 'Previous' %}</a>
+        	{% endif %}
+
+        	<ul class="pagination-list">
+            	{% for num in products.paginator.page_range %}
+                	{% if num == products.number %}
+                    	<li>
+                        	<a href="?page={{ num }}" class="pagination-link is-current" aria-label="Page {{ num }}" aria-current="page">{{ num }}</a>
+                    	</li>
+                	{% else %}
+                    	<li>
+                        	<a href="?page={{ num }}" class="pagination-link" aria-label="Goto page {{ num }}">{{ num }}</a>
+                    	</li>
+                	{% endif %}
+            	{% endfor %}
+        	</ul>
+
+        	{% if products.has_next %}
+            	<a href="?page={{ products.next_page_number }}" class="pagination-next" data-translate="{% trans 'Next' %}">{% trans 'Next' %}</a>
+            	<a href="?page={{ products.paginator.num_pages }}" class="pagination-next" data-translate="{% trans 'Last' %}">{% trans 'Last' %}</a>
+        	{% else %}
+            	<a class="pagination-next" disabled data-translate="{% trans 'Next' %}">{% trans 'Next' %}</a>
+            	<a class="pagination-next" disabled data-translate="{% trans 'Last' %}">{% trans 'Last' %}</a>
+     		{% endif %}
+    	</nav>
+		{% endif %}
+
 		<footer class="footer">
 			<div class="columns">
 				<div class="column is-4">
-					<h2 class="subtitle">E-shop</h2>
+					<h2 class="subtitle" data-translate="{% trans 'E-shop' %}">{% trans 'E-shop' %}</h2>
 				</div>
 
 				<div class="column is-8">
-					<a href="{% url 'contact' %}" class="navbar-item">Contact</a>
-					<a href="{% url 'about' %}" class="navbar-item">About</a>
+					<a href="{% url 'contact' %}" class="navbar-item" data-translate="{% trans 'Contact' %}">{% trans 'Contact' %}</a>
+					<a href="{% url 'about' %}" class="navbar-item" data-translate="{% trans 'About' %}">{% trans 'About' %}</a>
 				</div>
 			</div>
 		</footer>
 	 </div>
+
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 		<script>
