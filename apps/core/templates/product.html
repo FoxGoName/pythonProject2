@@ -1,7 +1,7 @@
 {% extends 'managerBase.html' %}
 {% block content %}
              <a href="{% url 'order_list' %}" class="button is-hovered">Orders</a>
-             <a href="{% url 'addProduct' %}" class="button is-info is-hovered">Add product</a>
+             <a href="{% url 'addProduct' %}" class="button is-info is-hovered"><i class="fa-solid fa-square-plus"  style="margin-right: 5px;"></i>Add product</a>
              <!-- <div class="product-list">
                  {% for product in products %}
                  <div class="product">
@@ -43,15 +43,15 @@
                       </div>
                              <footer class="card-footer" style="display: flex; justify-content: space-between; align-items: center;">
                                 {% if product.is_disabled %}
-                                    <a href="{% url 'enableProduct' product.pk %}" class="button is-primary is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;">Enable</a>
+                                    <a href="{% url 'enableProduct' product.pk %}" class="button is-primary is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;"><i class="fa-solid fa-check" style="margin-right: 3px;"></i>Enable</a>
                                 {% else %}
-                                    <a href="{% url 'disableProduct' product.pk %}" class="button is-danger is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;">Disable</a>
+                                    <a href="{% url 'disableProduct' product.pk %}" class="button is-danger is-focused" style="margin-left: 10px; margin-top: 5px; margin-bottom: 5px;"><i class="fa-regular fa-eye-slash" style="margin-right: 3px;"></i>Disable</a>
                                 {% endif %}
                                  {% comment %} &nbsp<a href="{% url 'editProduct' product.pk %}" class="button is-info is-outlined">Edit</a>&nbsp
                                  <a href="{% url 'deleteProduct' product.pk %}" class="button is-danger is-outlined">Delete</a> {% endcomment %}
                                  <div>
-                                    <a href="{% url 'editProduct' product.pk %}" class="button is-info is-outlined" style="margin-top: 5px; margin-bottom: 5px;">Edit</a>
-                                    <a href="{% url 'deleteProduct' product.pk %}" class="button is-danger is-outlined" style="margin-right: 10px; margin-top: 5px; margin-bottom: 5px;">Delete</a>
+                                    <a href="{% url 'editProduct' product.pk %}" class="button is-info is-outlined" style="margin-top: 5px; margin-bottom: 5px;"><i class="fa-regular fa-pen-to-square" style="margin-right: 3px;"></i>Edit</a>
+                                    <a href="{% url 'deleteProduct' product.pk %}" class="button is-danger is-outlined" style="margin-right: 10px; margin-top: 5px; margin-bottom: 5px;"><i class="fa-solid fa-trash" style="margin-right: 3px;"></i>Delete</a>
                                  </div>
                              </footer>
                    </div>

@@ -5,7 +5,7 @@
 
     <form action="{% url 'logout' %}" method="post" class="button is-danger">
         {% csrf_token %}
-        <button type="submit" class="button is-danger">{% trans 'Logout' %}</button>
+        <button type="submit" class="button is-danger"><i class="fa-solid fa-right-to-bracket" style="margin-right: 5px;"></i>{% trans 'Logout' %}</button>
     </form>
 
     <hr>

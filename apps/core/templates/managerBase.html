@@ -6,6 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{% block title %}{% endblock %}E-shop</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<style>
 			{% comment %} .navbar{
 			background-color: #F99A52
@@ -20,8 +21,7 @@
 	 <div id="content" style="font-size: 16px;">
 		<nav class="navbar is-light">
 			<div class="navbar-brand">
-				<a class="navbar-item" href="{% url 'productManager' %}" data-translate="{% trans 'E-shop' %}">{% trans 'E-shop' %}</a>
-
+				<a class="navbar-item" href="{% url 'productManager' %}" data-translate="{% trans 'E-shop' %}"><i class="fa-solid fa-house" style="margin-right: 5px;"></i>{% trans 'E-shop' %}</a>
 				<a @click="toggleMenu()" role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="main-navbar">
 					<span aria-hidden="true"></span>
 					<span aria-hidden="true"></span>
@@ -39,7 +39,7 @@
 									<input type="text" class="input" placeholder="Search..." name="query">
 								</div>
 								<div class="control">
-									<button class="button is-success" data-translate="{% trans 'Search' %}">{% trans 'Search' %}</button>
+									<button class="button is-success" data-translate="{% trans 'Search' %}"><i class="fa-solid fa-magnifying-glass" style="margin-right: 5px;"></i>{% trans 'Search' %}</button>
 								</div>
 							</div>
 						</form>
@@ -55,7 +55,7 @@
 
 				</div> {% endcomment %}
 					<div class="navbar-item has-dropdown is-hoverable">
-						<a href="#" class="navbar-link" data-translate="{% trans 'Categories' %}">{% trans 'Categories' %}</a>
+						<a href="#" class="navbar-link" data-translate="{% trans 'Categories' %}"><i class="fa-solid fa-list" style="margin-right: 5px;"></i>{% trans 'Categories' %}</a>
 						<div class="navbar-dropdown">
 					  		<div class="category-table">
 								{% for category in menu_categories %}
@@ -72,10 +72,10 @@
 
 		<div style="display: flex; justify-content: space-between; align-items: center; margin-right: 10px; margin-left: 10px;">
 			<div style="text-align: left;">
-			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;" data-translate="{% trans 'Please choose the font size' %}">{% trans 'Please choose the font size' %}:</span>
-			  <button id="small-font" style="vertical-align: middle; line-height: 40px;">小</button>
-			  <button id="medium-font" style="vertical-align: middle; line-height: 40px;">中</button>
-			  <button id="large-font" style="vertical-align: middle; line-height: 40px;">大</button>
+			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px; font-weight: bold;" data-translate="{% trans 'Please choose the font size' %}">{% trans 'Please choose the font size' %}:</span>
+			  <button class="button" id="small-font" style="vertical-align: middle; line-height: 40px;">Small</button>
+			  <button class="button" id="medium-font" style="vertical-align: middle; line-height: 40px;">Medium</button>
+			  <button class="button" id="large-font" style="vertical-align: middle; line-height: 40px;">Large</button>
 			  {% comment %} <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;">Please choose the font size:</span> {% endcomment %}
 			  <select id="font-select" style="vertical-align: middle; line-height: 40px;">
 				<option value="10px">10px</option>
@@ -97,7 +97,7 @@
 			
 		  
 			<div style="text-align: right;">
-			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px;" data-translate="{% trans 'Please choose your language' %}">{% trans 'Please choose your language' %}:</span>
+			  <span style="display: inline-block; vertical-align: middle; line-height: 40px; margin-right: 10px; font-weight: bold;" data-translate="{% trans 'Please choose your language' %}">{% trans 'Please choose your language' %}:</span>
 			  <form class="form-inline ml-auto" action="{% url 'set_language' %}" method="post" style="float: right;">
 				{% csrf_token %}
 				<div class="select">

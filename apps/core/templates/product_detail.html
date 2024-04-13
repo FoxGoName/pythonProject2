@@ -52,7 +52,7 @@ body {
     </br><p style="color: blue; font-size: 150%;"><b>Already in cart!</b></p>  
         {% else %}  
             {% if product.num_available > 0 %}  
-                <button @click="addToCart({{ product.id }})" class="button is-success" onclick="alert('The product has been added to the shopping cart successfully.')">Add to cart</button>  
+                <button @click="addToCart({{ product.id }})" class="button is-success" onclick="alert('The product has been added to the shopping cart successfully.')"><i class="fa-solid fa-cart-plus" style="margin-right: 5px;"></i>Add to cart</button>  
             {% else %}  
                 <p>The product is out of stock!</p>  
             {% endif %}  
