@@ -40,7 +40,18 @@ def frontpage(request):
     return render(request, 'frontpage.html', context)
 
 def productManagePage(request):
+    all_products = Product.objects.all()
+    paginator = Paginator(all_products, 8)  # Limiting 8 products per page
+    page = request.GET.get('page')
 
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
+
+<<<<<<< HEAD
     products = Product.objects.all()
     all_products = Product.objects.filter(is_disabled=False)
     paginator = Paginator(all_products, 8)  # 每页显示8个产品
@@ -53,6 +64,8 @@ def productManagePage(request):
     except EmptyPage:
         products = paginator.get_page(paginator.num_pages)
 
+=======
+>>>>>>> 05916298dcdfba1b44a38b9022cbbdb669f75933
     context = {
         'products': products
     }
