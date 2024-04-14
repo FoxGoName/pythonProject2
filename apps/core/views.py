@@ -42,6 +42,17 @@ def frontpage(request):
 def productManagePage(request):
 
     products = Product.objects.all()
+    all_products = Product.objects.filter(is_disabled=False)
+    paginator = Paginator(all_products, 8)  # 每页显示8个产品
+    page = request.GET.get('page')
+
+    try:
+        products = paginator.get_page(page)
+    except PageNotAnInteger:
+        products = paginator.get_page(1)
+    except EmptyPage:
+        products = paginator.get_page(paginator.num_pages)
+
     context = {
         'products': products
     }

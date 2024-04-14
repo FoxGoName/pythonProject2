@@ -96,6 +96,7 @@ def category_detail(request, slug):
 def manager_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     products = category.products.all()
+    
 
     context = {
         'category': category,
